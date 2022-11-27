@@ -1,0 +1,13 @@
+.task-container {
+
+	&__task-item {
+
+		display: grid;
+		grid-template-columns: 10% 80% 10%;
+		grid-template-rows: minmax(50px, auto);
+		align-items: center;
+
+		border-bottom: 1px dashed gray;
+		margin-bottom: 5px
+	}
+}

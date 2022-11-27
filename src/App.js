@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {  useEffect } from "react";
+import { MyContext} from "./hooks/useContextData"
+
+import { useContentState } from "./hooks/useContentState"
+import { monitor, getFilesFromDatabase } from "./hooks/useFirebase"
+
+import { TaskBody } from "./components/taskBody/TaskBody"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	
+	const value = useContentState() 
+	const {	search, setTaskState	} = value
+		
+	useEffect(() => {
+		if (!search) monitor(setTaskState)
+	}, [setTaskState, search])
+
+	return (
+
+		<MyContext value={	value	}>
+			<TaskBody />
+		</MyContext>
+  );	
 }
 
 export default App;

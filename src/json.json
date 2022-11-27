@@ -1,0 +1,34 @@
+{
+	"data": [
+	{
+		"id": 1,
+		"title": "задача1 fjfjfjfjfj fjfjfjfjfj fjfjfjfjf ffhfhfhfhfhfh fhfhfhfhf hfhfhf",
+		"description": "создание компонентов, а именно, заголовка, описания, дедлайна, чек-боксов для сипска задач",
+		"deadline": "22.11.22",
+		"compliteAt": 0,
+		"isComplite": true,
+		"files": [
+			"file.pdf"
+		]
+	},
+	{
+		"id": 2,
+		"title": "задача2",
+		"description": "взаимодействие с кнопками",
+		"deadline": "23.11.22",
+		"compliteAt": 0,
+		"isComplite": false,
+		"files": [
+			"file.pdf"
+		]
+	},
+	{
+		"id": 3,
+		"title": "задача3",
+		"description": "привести все в порядок",
+		"deadline": "24.11.22",
+		"compliteAt": 0,
+		"isComplite": true,
+		"files": []
+	}
+]}
