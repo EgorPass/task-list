@@ -1,0 +1,104 @@
+%template-wrap {
+	hyphens: auto;
+	white-space: pre-line;
+	word-break: break-all;
+}
+
+%template-overflow {
+	box-sizing: border-box;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+%template-title {
+	margin: 0;
+	padding: 5px;
+	max-height: 90px;
+
+	font: bold 24px Time serif;
+	line-height: 1.2;
+	color: gray;
+	text-shadow: 1px 1px 1px black;
+}
+
+%template-title_small {
+	font: 20px bold Time serif;
+}
+
+%template-checkbox {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: center;
+	cursor: default;
+	user-select: none;
+}
+
+%template-checkbox__input{
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+%template-checkbox__checkmark {
+	position: relative;
+	height: 22px;
+	width: 22px;
+	background-color: #eee;
+	border-radius: 11px;
+
+	border: 1px solid gray;
+	box-shadow: 1px 1px 1px gray;
+}
+
+%template-checkbox__checkmark-small {
+	height: 18px;
+	width: 18px;
+}
+
+%template-checkbox__checkmark_active {
+	content: "";
+	position: absolute;
+	left: 8px;
+	top: 3px;
+	width: 5px;
+	height: 10px;
+	border: solid #333;
+	border-width: 0 3px 3px 0;
+	transform: rotate(45deg);
+	opacity: 0;
+}
+
+%template-checkbox__description {
+	padding: 0 0 0 10px;
+	flex-basis: 200px;
+
+}
+
+%template-description {
+	margin: 0;
+	padding: 5px;
+	max-height: 250px;
+}
+
+%template-font_description {
+	font: normal 18px/1.2 Time serif;
+	text-shadow: 1px 1px 1px gray;
+}
+
+%template-circle-button {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	outline: none;
+	border: 1px solid gray;
+	border-radius: 50%;
+	text-align: center;
+	box-shadow: 1px 1px 2px gray;
+	cursor: default;
+	background: rgba(230, 230, 230, 1);
+}

@@ -30,13 +30,6 @@ export const useEdit = () => {
 	 * @param {function} callback в данный параметр передается setFieldState, для обновления поля описания задачи и состояния fieldState
  	 */
 	const changeEditState = (field, str, callback) => {
-		
-		const newStr = str.slice(str[str.length - 1])
-		
-		console.log(str[str.length - 1] === "\n")
-		if(str[str.length - 1] === "\n") str += ""
-		// console.log(newStr)
-		
 		callback(prev => ({
 			...prev,
 			[field] : str,

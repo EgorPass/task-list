@@ -1,21 +1,12 @@
+@import "./template.scss";
+
 .task-item {
 	
 	&__checkbox {
-		display: flex;
-		flex-flow: row nowrap;
-		align-items: center;
-		justify-content: center;
-		cursor: default;
-		user-select: none;
-
-		width: 100%;
-		height: 100%;
+		@extend %template-checkbox;
 
 		& input {
-			position: absolute;
-			opacity: 0;
-			height: 0;
-			width: 0;
+			@extend %template-checkbox__input;
 		}
 
 		& input:checked~div {
@@ -31,14 +22,7 @@
 		}
 
 		& div {
-			position: relative;
-			height: 22px;
-			width: 22px;
-			background-color: #eee;
-			border-radius: 11px;
-
-			border: 1px solid gray;
-			box-shadow: 1px 1px 1px gray;
+			@extend %template-checkbox__checkmark;
 		
 			@media (max-width: 500px) {
 				height: 18px;
@@ -47,16 +31,7 @@
 		}
 
 		& div:after {
-			content: "";
-			position: absolute;
-			left: 8px;
-			top: 3px;
-			width: 5px;
-			height: 10px;
-			border: solid #333;
-			border-width: 0 3px 3px 0;
-			transform: rotate(45deg);
-			opacity: 0;
+			@extend %template-checkbox__checkmark_active;
 			
 			@media (max-width: 500px) {
 				left: 6px;
@@ -69,26 +44,25 @@
 	}
 
 	&__title {
-		margin: 0;
-		padding: 0;
-		line-height: 1.2;
+
+		@extend %template-title;
+		@extend %template-wrap;
+		@extend %template-overflow;
+
 		cursor: pointer;
-		color: gray;
-		text-shadow: 1px 1px 1px black;
-		font: bold 24px Time serif;
-		
+	
 		&_deadmen {
-			color: rgb(183, 95, 95);
+				color: rgb(183, 95, 95);
 		}
+		
 		&_complite {
 			color: rgb(0, 128, 0);
 		}
-
+		
 		@media (max-width: 500px) {
 			font: 20px bold Time serif;
 		}
 	}
-
 
 	&__title:hover {
 		color: rgb(210, 231, 161);
@@ -98,7 +72,5 @@
 	&__file-anchor{
 		justify-self: center;
 	}
-
-	
-
 }
+

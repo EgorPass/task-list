@@ -53,8 +53,10 @@ export function useContentState() {
 	 * @param {object} newTask - принимает объект типа: { id: number, title: string, description: string, deadline: Date,	isComplite: boolean } 
 	 */
 	const openNewField = (newTask) => {
+		setFieldState(newTask)
 		setCreateState(true)
 		setEdit(newTask)
+
 	}
 
 
@@ -231,10 +233,15 @@ export function useContentState() {
 		setEdit(null);
 
 		if (createState) {
+			setFieldState(null)
+			setCreateState(false)
 			let tasks = await updateStateAndDatabase("/", editState.id, null)
-			setTaskState( ( (tasks && Object.values(tasks)) || []) )
+			setTaskState(((tasks && Object.values(tasks)) || []))
 		}
-		if(createState) setCreateState(false)
+
+		else if (fieldState) {
+			setFieldState(taskState.find(it => it.id === id) )
+		} 
 	}
 
 

@@ -9,12 +9,12 @@ import { useContextData } from "../../hooks/useContextData"
  * 
  * @returns 
  */
-export const CancelEditButton = () => {
+export const CancelEditButton = ({id}) => {
 	const { clickAtCancelButton  } = useContextData();
 
 	return (
 		<button 
-			onClick={() => { clickAtCancelButton() }}
+			onClick={() => { clickAtCancelButton(id) }}
 			className="task-field__item-button"
 		>
 			Отменить
