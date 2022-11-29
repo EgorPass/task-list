@@ -19,18 +19,36 @@ export const useEdit = () => {
 	/**
 	 * Функция изменяет поля в описании задач в режиме редактирования.
 	 * 
-	 * Обновляет editState.
+	 * Обновляет editState и fieldState.
+	 * 
+	 * обновление fieldState для подгона размера раздела в котором происходят изменения
 	 * 
 	 * Используется на onChange в input компоненты EditTextField
 	 * 
 	 * @param {string} field свойство поля в которое вносяться изменения,  
-	 * @param {string} str новое занчение для свойства field в editState 
-	 */
-	const changeEditState = (field, str) => {	
+	 * @param {string} str новое занчение для свойства field в editState и fieldState,
+	 * @param {function} callback в данный параметр передается setFieldState, для обновления поля описания задачи и состояния fieldState
+ 	 */
+	const changeEditState = (field, str, callback) => {
+		
+		const newStr = str.slice(str[str.length - 1])
+		
+		console.log(str[str.length - 1] === "\n")
+		if(str[str.length - 1] === "\n") str += ""
+		// console.log(newStr)
+		
+		callback(prev => ({
+			...prev,
+			[field] : str,
+		}))
+		
 		setEditState(prev => ({
 			...prev,
 			[field]: str
 		}))
+
+
+
 	}
 
 	/**

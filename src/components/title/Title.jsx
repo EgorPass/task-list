@@ -21,10 +21,10 @@ export const Title = ({  id, title, className }) => {
 	const { clickAtTitle } = useContextData()
 
 	return (
-		<h2
+		<pre
 			className={className}
 			onClick= {()=>clickAtTitle(id)}
-		> {title}</h2>
+		> {title}</pre>
 	)
 		
 }

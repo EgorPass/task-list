@@ -253,6 +253,8 @@ export function useContentState() {
 	const clickAtAcceptButton = async (id) => {
 		if (editState.title.length < 3) return
 
+		console.log(editState.title)
+
 			setFieldAtDatabase("/", editState.id, editState)
 			setFieldState(editState)
 			setEdit(null);
@@ -411,6 +413,7 @@ export function useContentState() {
 		clickAtFile,
 		changeSearch,
 		setTaskState,
+		setFieldState,
 
 		createTask,
 		clickAtAddFile,

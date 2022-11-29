@@ -29,12 +29,10 @@ export const FieldTitleContainer = ({ title, edit, isComplite, deadline }) => {
 
 		return (
 		<div className="task-field__title-container">
-			{
-				!edit && <Title
+				<Title
 						title={title}
 						className={`task-field__title task-field__title_${classNameMod}`}
 				/>
-			}
 			{
 				edit && <EditTextField
 					field="title"

@@ -1,5 +1,5 @@
 .task-item {
-
+	
 	&__checkbox {
 		display: flex;
 		flex-flow: row nowrap;
@@ -71,10 +71,11 @@
 	&__title {
 		margin: 0;
 		padding: 0;
-		line-height: 1;
+		line-height: 1.2;
 		cursor: pointer;
 		color: gray;
 		text-shadow: 1px 1px 1px black;
+		font: bold 24px Time serif;
 		
 		&_deadmen {
 			color: rgb(183, 95, 95);

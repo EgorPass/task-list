@@ -8,7 +8,7 @@
  * @returns 
  */
 export const TaskDescription = ({ description }) => (
-	<p className = "task-field__description">
+	<pre className = "task-field__description">
 		{description}
-	</p>
+	</pre>
 )

@@ -2,25 +2,32 @@
 
 	&__title-container {
 		grid-area: header;
-		
-		// border: 1px solid gray;
+
 		padding-bottom: 10px;
+		position: relative;
+		
 	}
 	
 	&__title {
-		padding: 0;
+		box-sizing: border-box;
+		max-height: 90px;
+		overflow-y: auto;
+		overflow-x: hidden;
+
+		padding: 5px;
 		margin: 0;
 
-		width: 100%;
 		text-align: center;
-		font: bold 24px Time serif;
+		font: bold 24px/1.2 Time serif;
 		line-height: 1;
-		cursor: pointer;
 		color: gray;			
 		text-shadow: 1px 1px 1px black;
+		hyphens: auto;
+		white-space: pre-line;
+		word-break: break-all;
 
 		&_complite {
-			color: rgb(0, 128, 0);
+			color: rgb(71, 114, 71);
 		}
 
 		&_deadmen {
@@ -40,10 +47,16 @@
 	}
 	
 	&__description {
+		box-sizing: border-box;
+		max-height: 300px;
+		overflow-y: auto;
+		overflow-x: hidden;
 		padding: 5px;
 		margin: 0;
-		font: normal 18px Time serif;
+		font: normal 18px/1.2 Time serif;
 		text-shadow: 1px 1px 1px gray;
+		hyphens: auto;
+		white-space: pre-line;
 		word-break: break-all;
 	}
 
@@ -339,6 +352,7 @@
 
 		display: block;
 		box-sizing: border-box;
+		// overflow-x: hidden;
 		width: 100%;
 		resize: none;
 		border: none;
@@ -346,8 +360,19 @@
 		background: rgba(240, 240, 255, 1);
 		text-shadow: 1px 1px 1px gray;
 		margin: 0;
-		
+		padding: 0;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		hyphens: auto;
+			white-space: pre-line;
+			word-break: break-all;
+			line-height: 1.2;
+
 		&_title {
+			max-height: 300px;
 			height: auto;
 			color: gray;
 			text-align: center;
@@ -356,12 +381,15 @@
 			font: bold 24px Time serif;
 			text-align: center;
 			
+			
 		}
 
 		&_description {
-			padding: 5px;
+			max-height: 300px;
+			padding: 0 5px;
 			margin: 0;
 			font: normal 18px Time serif;
+			
 		}
 
 		&_deadline {

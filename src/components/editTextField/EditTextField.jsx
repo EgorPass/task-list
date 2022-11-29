@@ -15,19 +15,19 @@ import { useContextData } from "../../hooks/useContextData"
  * @param {string} param.field для определения значения value для input
  * @returns 
  */
-export const EditTextField = ({className, field}) => {
-	const { changeEditState, editState } = useContextData()	
+export const EditTextField = ({ className, field}) => {
+	const { changeEditState, editState, setFieldState } = useContextData()	
 	const value = editState[field]
 
 	return (
-		<input
+		<textarea
 			autoFocus = {field === "title" ? true : false}
 			value={value}
 			className={className}
-			onChange = {(e)=> {changeEditState(field, e.target.value)}}
+			onChange = {(e)=> {changeEditState(field, e.target.value, setFieldState)}}
 		>
 			
-		</input>
+		</textarea>
 	)
 
 }
