@@ -1,3 +1,4 @@
+import { useEffect, useMemo } from "react"
 import { useContextData } from "../../hooks/useContextData"
 
 /**
@@ -16,15 +17,24 @@ import { useContextData } from "../../hooks/useContextData"
  * @returns 
  */
 export const EditTextField = ({ className, field}) => {
-	const { changeEditState, editState, setFieldState } = useContextData()	
-	const value = editState[field]
+	const { changeEditState, editState, fieldState, setFieldState } = useContextData()	
+	let value = editState[field]
+
+	useEffect(() => {
+		setFieldState(prev => ({
+			...prev,
+			[field]: (value ),
+		}))
+	}, [value])
 
 	return (
 		<textarea
-			autoFocus = {field === "title" ? true : false}
+			autoFocus={field === "title" ? true : false}
 			value={value}
 			className={className}
-			onChange = {(e)=> {changeEditState(field, e.target.value, setFieldState)}}
+			onChange={(e) => {
+				changeEditState(field, e.target.value, setFieldState)
+			}}
 		>
 			
 		</textarea>

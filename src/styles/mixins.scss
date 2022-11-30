@@ -1,0 +1,26 @@
+@mixin setGrid($row, $col, $justify, $align) {
+	display: grid;
+	grid-template-rows: $row;
+	grid-template-columns: $col;
+	align-items: $align;
+	justify-items: $justify;
+}
+
+@mixin setFlex($flow, $justify,
+$align) {
+	display: flex;
+	flex-flow: $flow;
+	align-items: $align;
+	justify-content: $justify;
+}
+
+@mixin setBorder($border, $borderRadius, $boxShadow) {
+	border: $border;
+	border-radius: $borderRadius;
+	box-shadow: $boxShadow;
+}
+
+@mixin setBox($margin, $padding) {
+	margin: $margin;
+	padding: $padding;
+}

@@ -27,21 +27,14 @@ export const useEdit = () => {
 	 * 
 	 * @param {string} field свойство поля в которое вносяться изменения,  
 	 * @param {string} str новое занчение для свойства field в editState и fieldState,
-	 * @param {function} callback в данный параметр передается setFieldState, для обновления поля описания задачи и состояния fieldState
  	 */
-	const changeEditState = (field, str, callback) => {
-		callback(prev => ({
-			...prev,
-			[field] : str,
-		}))
-		
+	const changeEditState = (field, str,) => {
+		if (str === '') str = ' ';
+		if (str.endsWith('\n') ) str += ' '
 		setEditState(prev => ({
 			...prev,
 			[field]: str
 		}))
-
-
-
 	}
 
 	/**
@@ -66,17 +59,23 @@ export const useEdit = () => {
 
 	/**
 	 * Функция для поиска задач по набору букв, части слова или слова целиком
-	 * в массиве объектов taskState.
+	 * в хранилище realtimeDatabase.
 	 * 
-	 * @param {object[]} tasks каждый элемент масива имеет тпи: { id: number, title: string, description: string, deadline: Date,	isComplite: boolean }
-	 * @param {string} value сочетание букв, или слово для поиска в task 
+	 * @param {string} value сочетание букв, или слово в нижнем регистре для поиска в task 
 	 * @returns {object} возвращает объект типа: тип: { id: number, title: string, description: string, deadline: Date,	isComplite: boolean }
 	 */
-	const searchTask = (tasks, value) => {
-		return tasks
-			.filter(it => (
-				it.title.includes(value) || it.description.includes(value))
-			) || []
+	const searchTask = async ( value) => {
+		let newTasks = await getFilesFromDatabase("/")
+		if (newTasks) {
+			newTasks = Object.values( newTasks )
+			return newTasks
+				.filter(it => { 
+					const title = it.title ? it.title.toLowerCase() : "";
+					const desc = it.description ? it.description.toLowerCase() : "";
+					return title.includes(value) || desc.includes(value)
+				})
+					
+		} else return Object.values( newTasks ) || []
 	}
 
 	/**

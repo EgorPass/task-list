@@ -28,12 +28,12 @@ export const TaskHeader = () => {
 				/>
 			</div>
 			<div className="task-header__create-button">
-				<span
+				<button
 					onClick={(e) => {createTask() }}
 					className="task-header__item-button"
 				>
 						+
-				</span>
+				</button>
 			</div>				
 
 		</div>

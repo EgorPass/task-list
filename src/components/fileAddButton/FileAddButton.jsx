@@ -17,15 +17,17 @@ export const FileAddButton = ({ id }) => {
 	return (
 		<div className="task-field__file-add-position">
 			<label
-				className="task-field__file-add"
+				// className="task-field__file-add"
 			>
-				+
 				<input
 					onChange = {(e)=> clickAtAddFile(id, e.target)}
 					name = "files"
 					type="file"
 					className = 'task-field__file-add-input'
 				/>
+				<div className="task-field__file-add">
+				 +
+				</div>
 			</label>
 		</div>
 	)

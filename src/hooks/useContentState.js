@@ -394,15 +394,25 @@ export function useContentState() {
 	 * 
 	 * фильтрует вывод на экран списока задач из масива taskState, по совпадению в заголовке задачи или описании задачи.
 	 * 
+	 * ищет в хранилище поэтому сделанна задержка, что бы обработать больше симоволов за раз.
+	 * 
 	 * Функция используется в onChange поля input поисковой строки компоненты TaskHeader.
 	 * 
 	 * @param {string} str принимает строку из события onChange на поле поиска (в input)
 	 */
-	const changeSearch = ({target: {value}}) => {
+	const changeSearch = async({target: {value}}) => {
 		setSearchState(value)
 		if (value && taskState) {
-			const tasks = searchTask(taskState, value) 
-			 setTaskState(tasks)
+			
+			new Promise(res => { 
+				setTimeout(async () => {
+					const tasks = await searchTask(value.toLowerCase()) 
+					res(tasks)
+				}, 150)
+				
+			})
+			.then(tasks => setTaskState(tasks) )
+
 		}
 	}
 

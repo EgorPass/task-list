@@ -45,7 +45,9 @@ export const FileConetnt = ({id, files }) => {
 								loadState[fileId] && loadState[fileId] < 100 ? "hidden": "visible"
 							)}`}
 								onClick = {(e)=> {clickAtRemoveFile(id, fileId, name)}}
-						>X</span>
+						>
+							X
+						</span>
 						
 						<FileLoader loaderId={fileId} id={id} />
 					</li>
