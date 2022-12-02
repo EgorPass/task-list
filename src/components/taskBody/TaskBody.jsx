@@ -1,22 +1,28 @@
-import { useContextData } from "../../hooks/useContextData";
+import { useContextData } from "../../ComponentsHooks/useContextData";
 
 import { TaskHeader } from "../taskHeader/TaskHeader";
 import { TaskContainer } from "../task-container/TaskContainer";
 import { TaskItemField } from "../taskItemField/TaskItemField"
 
 
+import "../../styles/task-body.scss"
+import '../../styles/task-header.scss';
+import '../../styles/task-container.scss';
+
 /**
  * Компонент отрисовывает блок контейнр в котором отрисовывается три основные блока из которых состоит список задач: TaskHeader, TaskContainer и TaskItemField.
  * 
- * TaskItemField отрисовывается только если заполнено одно из состояний fieldState, editState.
+ * TaskItemField отрисовывается только если заполнено состояние field.
  *  
+ * field принимает через контекст
+ * 
  * Родительский компонент App
  * 
  * @returns 
  */
 export const TaskBody = () => {
 
-	const { fieldState, editState  } = useContextData()
+	const { field  } = useContextData()
 
 	
 	return (
@@ -25,7 +31,7 @@ export const TaskBody = () => {
 			<TaskContainer />
 			
 			{
-				(fieldState || editState) && <TaskItemField task={fieldState} />
+				(field) && <TaskItemField task={field} />
 			}
 
 		</div>

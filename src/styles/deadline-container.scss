@@ -1,0 +1,33 @@
+@import "./template.scss";
+@import "./varibels.scss";
+@import "./mixins.scss";
+
+.deadline-container {
+
+	&__deadline-description {
+			justify-self: center;
+			margin: $deadlineDescriptionMargin;
+			@extend %template-font_description;
+		
+			
+			@media (max-width: 500px) {
+				font: $templateDescriptionFontSmall;
+			}
+		}
+	
+		&__deadline {
+			outline: none;
+			border: none;
+			flex-basis: 110px;
+			background-color: $backgroungField;
+			
+			@extend %template-font_description;
+			
+			justify-self: end;
+			@media (max-width: 500px) {
+				font: $templateDescriptionFontSmall;
+				flex-basis: 100px;
+			}
+	
+		}
+}

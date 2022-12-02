@@ -1,3 +1,4 @@
+import { useContextData } from "../../ComponentsHooks/useContextData"
 
 /**
  * Компонент который отрисовывет блочный элемент с датой до которой нужно выполнить задачу.
@@ -7,12 +8,15 @@
  * @param {{deadline: string | number}} deadline дата до которай нужно выплнить задачу,
  * @returns 
  */
-export const DeadlineForTask = ({ deadline }) => {
+export const DeadlineForTask = ({id, deadline, }) => {
+	const { field, changeDate } = useContextData()	
 
 	return (
-			
-		<div className="task-field__deadline">
-			{deadline}
-		</div>
-		)
+		<input
+			type = "date"
+			value={field.deadline}
+			className= "deadline-container__deadline"
+			onChange = {(e)=> {changeDate( e.target.value)}}
+		/>
+	)
 }

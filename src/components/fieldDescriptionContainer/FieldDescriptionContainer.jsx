@@ -1,35 +1,34 @@
-import { TaskDescription } from "../taskDescription/TaskDescription";
-import { EditTextField } from "../editTextField/EditTextField";
+import { EditableTextField } from "../editableTextField/EditableTextField";
+
+import "../../styles/description-container.scss"
 
 /**
  * Компонент создает элемент описания задачи.
  * 
- * Компонент отрисовывает только один из компонентов TaskDescription или EditTextField, в зависимости от состояния edit, если edit содержит null, то TaskDescription иначе EditTextField. 
- * 
  * Родительский компонент TaskItemField.
- * 
  * 
  * @param {object} param
  * @param {string} param.description описание задачи из объекта массива taskState,
  * @param {object | null} param.edit объект который содержит информацию для режима редактирования
  * @returns 
  */
-export const FieldDescriptionContainer = ({ description, edit, id }) => {
+export const FieldDescriptionContainer = ({ description}) => {
 
-return	(
-		<div className="task-field__descriptio-container">
-		<TaskDescription 
-									description={description} 
-									/>  
-		
+	console.log(description)
 
-		{
-			edit && <EditTextField
-			id = {id}
-			field="description"
-								className="task-field__edit-field task-field__edit-field_description"
-								/>
-		}			
-	</div>
+	return (
+		<div className = "task-field__descriptio-container description-container">
+			<div className = "task-field__text-height">	
+				
+				{description}
+	
+				<EditableTextField 
+					field = "description"
+					content={description}
+					className = "description-container__description"
+				/>
+
+			</div>
+		</div>
 ) 
 }

@@ -1,0 +1,40 @@
+@import "./template.scss";
+@import "./varibels.scss";
+@import "./mixins.scss";
+
+.button-container {
+	&__item-button {
+			position: relative;
+			top: 0px;
+			left: 0px;
+			width: $itemButtonWidth;
+			height: $itemButtonHeight;
+			background: $itemButtonBackground;
+	
+			@include setBorder($itemButtonBorder,
+				$itemButtonBorderRadius,
+				$itemButtonBoxShadow);
+	
+			font: $itemButtonFont;
+			margin-left: 5px;
+	
+			@media (max-width: 500px) {
+				font: $itemButtonFontSmall;
+			}
+		}
+	
+		&__item-button:first-of-type {
+			margin-left: 0px;
+		}
+	
+		&__item-button:hover {
+			background: $itemButtonBackgroundHover;
+		}
+	
+		&__item-button:active {
+			top: 2px;
+			left: 1px;
+			box-shadow: 0px 1px 0px black;
+		}
+
+}

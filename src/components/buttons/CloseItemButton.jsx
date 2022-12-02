@@ -1,4 +1,4 @@
-import { useContextData } from "../../hooks/useContextData"
+import { useContextData } from "../../ComponentsHooks/useContextData"
 
 /**
  * Создает элемент кнопки, которая отрисовывается в компоненте FieldButtonContainer.
@@ -14,8 +14,8 @@ export const CloseItemButton = ({ id }) => {
 	const {clickAtCloseButton} = useContextData()
 	return (
 		<button
-			onClick = {(e) => { clickAtCloseButton() }}
-			className = "task-field__item-button"
+			onClick = {(e) => { clickAtCloseButton(id) }}
+			className = "button-container__item-button"
 		>
 			Закрыть
 		</button>

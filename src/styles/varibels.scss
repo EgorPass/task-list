@@ -2,8 +2,8 @@
 	$templateTitleFontBig: bold 24px/1.2 Time serif;
 	$templateTitleFontSmall: 20px/1.2 bold Time serif;
 
-	$templateDescriptionFont: normal 18px/1.2 Time serif;
-	$templateDescriptionFontSmall: normal 16px/1.2 Time serif;
+	$templateDescriptionFont: normal 18px/1.5 Time serif;
+	$templateDescriptionFontSmall: normal 16px/1.5 Time serif;
 
 	$searchFielfFont: bold 16px/1 Time serif;
 	
@@ -22,7 +22,12 @@
 	$fileAddFontSmall: bold 18px/1 Time serif;
 
 	$fileNameFont: 14px Time serif;
+	$fileNameColor: black;
 	$fileNameTextShadow: 1px 1px 1px gray;
+
+
+	$fileNameColorHover: blue;
+	$fileNameTextDecorHover: underline;
 
 	$fileRemoveFont: bold 8px Time serif;
 
@@ -34,24 +39,22 @@
 
 // backgrounds 
 
-	$backgroundBody: rgba(240, 240, 240, 1);
-	$backgroungField: rgba(240, 240, 255, 1);
+	$backgroundBody: rgb(238, 241, 219);
+	$backgroungField: rgb(238, 241, 219);
 	$searchFieldBackground: gba(248, 248, 248, 1);
 
-	$createButtonHover: rgb(210, 231, 161);
-
+	
 	$taskCoverBackground: rgba( 0, 0, 0, .1);
-
+	
 	$checkboxBackground: #eee;
 	$checkboxBackgroundChecked: #5df71571;
 	$checkboxBackgroundHover: #f7ca1577;
-
+	
 	$circleButtonBackground: rgba(230, 230, 230, 1);
-
-	$fileAddBackgroundHover: rgb(210, 231, 161);
-
+	$fileAddBackgroundHover: rgba(230, 230, 230, 1);
 	$itemButtonBackground: rgba(230, 230, 230, 1);
 
+	$createButtonHover: rgb(210, 231, 161);
 	$fileLoaderProgressBackground: rgba(150, 150, 150, .5);
 //Borders
 	
@@ -69,13 +72,13 @@
 
 	$templateCheckboxCheckmarkBorder: 1px solid gray;
 	$templateCheckboxCheckmarkBorderRadius: 11px;
-	$templateCheckboxCheckmarkBoxShadow:1px 1px 1px gray;
+	$templateCheckboxCheckmarkBoxShadow:1px 1px 2px gray;
 
 	$templateCircleButtonBorder: 1px solid gray;
 	$templateCircleButtonBorderRadius: 50%;
-	$templateCircleButtonBoxShadow: 1px 1px 2px gray;
+	$templateCircleButtonBoxShadow: 1.5px 1.5px 4px gray;
 
-	$taskFieldBorder: 2px outset gray;
+	$taskFieldBorder: 1px outset gray;
 	$taskFieldBorderRadius: 8px;
 	$taskFieldBoxShadow: 4px 4px 6px gray;
 
@@ -84,12 +87,13 @@
 	$createButtonBoxShadowActive: 0 0 2px gray;
 
 	$taskItemBorderBottom: 1px dashed gray;
-	$taskItemMargin: 0 0 5px 0;
-	$taskItemPadding: 0 0 5px 0;
 
-	$itemButtonBorder: auto;
+	$itemButtonBorder: 1px outset gray;
 	$itemButtonBorderRadius: 8px;
-	$itemButtonBoxShadow: 2px 2px 2px black;
+	$itemButtonBoxShadow: 2px 2px 4px gray;
+
+	$fileListBorder: 1px inset gray;
+	$fileListBorderRadius: 5px;
 
 // Flex
 
@@ -151,6 +155,7 @@
 	$fileLoaderGridCol: 95% 5%;
 	$fileLoaderGridjustify: auto;
 	$fileLoaderGridAlign: auto;
+
 // box
 
 	$taskHeaderMargin: 5px;
@@ -158,6 +163,12 @@
 
 	$searchFieldMargin: none;
 	$searchFieldPadding: 5px 10px;
+
+	$taskItemMargin: 0 0 5px 0;
+	$taskItemPadding: 0 0 5px 0;
+
+	$taskItemTitleMargin: 0;
+	$taskItemTitlePadding: 5px;
 	
 	$contentContainerMargin: 5px;
 	$contentContainerPadding: 8px;
@@ -169,11 +180,12 @@
 
 	$taskFieldPadding: 20px;
 
+
 	$descriptionMargin: 0;
 	$descriptionPadding: 5px;
 
 	$checkboxDescriptionPadding: 0 0 0 5px;
-	$deadlineDescriptionMargin: 0 10px 0 0;
+	$deadlineDescriptionMargin: 0 5px 0 0;
 
 	$fileContainerMargin: 10px 0 0 0;
 
@@ -182,7 +194,6 @@
 
 	$fileListMarginSmall: 0 10px 0 0;
 
-	$fileListBorder: 2px inset gray;
 
 	$fileItemMargin: 2px 0;
 	$fileItemPadding: 0;

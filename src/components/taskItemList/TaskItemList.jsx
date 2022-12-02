@@ -1,12 +1,14 @@
 import { Title } from "../title/Title";
 import { Checkbox } from "../checkbox/Checkbox";
-import { useContextData } from "../../hooks/useContextData"
+import { useContextData } from "../../ComponentsHooks/useContextData"
 import { FileAnchor } from "../fileAnchor/FileAnchor";
+
+import '../../styles/task-item.scss';
 
 /**
  * Компонент контейнер, для отрисовки чекбокса задачи и названия задачи в отдельной линии списка задач.
  * 
- * Принимает в пропсы объект массива taskState  
+ * Принимает в пропсы объект массива tasks 
  * 
  * Отрисовывает компоненты Checkbox и Title.
  * 

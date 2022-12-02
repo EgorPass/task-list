@@ -1,6 +1,4 @@
 import React, {useContext} from "react";
-
-
 const ContextData = React.createContext(null);
 
 /**

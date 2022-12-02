@@ -1,5 +1,6 @@
 import { Checkbox } from "../checkbox/Checkbox";
 
+import '../../styles/checkbox-container.scss'
 
 /**
  * Отрисовывает компонент Checkbox и добавляет к ниму комментарий о готовности.
@@ -19,17 +20,17 @@ export const FieldCheckboxContainer = ({ id, isComplite, create}) => {
 
 	return (
 			
-		<div className = "task-field__checkbox-container">
+		<div className = "task-field__checkbox-container checkbox-container">
 			{
 				!create &&
 					<>
 						<Checkbox
 							id = {id}
 						isComplite={isComplite}
-						className = "task-field__checkbox"
+						className = "checkbox-container__checkbox"
 						/>
 						<span
-							className="task-field__check-description"
+							className="checkbox-container__check-description"
 						>
 							{checkDescription}
 						</span>		

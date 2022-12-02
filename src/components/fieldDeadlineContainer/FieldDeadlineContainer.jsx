@@ -1,10 +1,9 @@
 import { DeadlineForTask } from "../deadlineForTask/DeadlineForTask";
-import { EditDateField } from "../editDateField/EditDateField";
+
+import "../../styles/deadline-container.scss"
 
 /**
  * Компонент контейнер, создает блок с классом "task-field__deadline-container" для размещения элементов о дате до которой нужно завершить задачу или изменению этой даты в поле описания задачи.
- * 
- * Отрисовывает только один компонент, DeadlineForTask или EditDateField в зависимости от значения параметра edit - если null то DeadlineForTask, иначе EditDateField.
  * 
  * Из параметров deadline, isComplite и текущей даты формирует фразу, которая ставиться перед датой.
  * 
@@ -34,18 +33,16 @@ export const FieldDeadlineContainer = ({ id, deadline, isComplite, edit }) => {
 
 	return (
 		
-		<div className="task-field__deadline-container">
-			<span className = "task-field__deadline-description">{ deadLineDescription }</span>
+		<div className="task-field__deadline-container deadline-container">
+			<span className = "deadline-container__deadline-description">{ deadLineDescription }</span>
 			
 			{
-				!edit && <DeadlineForTask
-										deadline={deadline}
-									/>
+				!isComplite && (
+
+					< DeadlineForTask id={id}  deadline={deadline}	/>
+				)
 			}
-			{
-				edit && !isComplite && <EditDateField id = {id} />
-			}
-					
+
 		</div>
 
 	)

@@ -1,4 +1,4 @@
-import { useContextData } from "../../hooks/useContextData"
+import { useContextData } from "../../ComponentsHooks/useContextData"
 
 /**
  * Создает кнопку добавления файла в раздел загрузки файлов о поле описания задачи.
@@ -15,7 +15,7 @@ export const FileAddButton = ({ id }) => {
 	const {clickAtAddFile} = useContextData()
 
 	return (
-		<div className="task-field__file-add-position">
+		<div className="file-container__file-add-position">
 			<label
 				// className="task-field__file-add"
 			>
@@ -23,9 +23,9 @@ export const FileAddButton = ({ id }) => {
 					onChange = {(e)=> clickAtAddFile(id, e.target)}
 					name = "files"
 					type="file"
-					className = 'task-field__file-add-input'
+					className = 'file-container__file-add-input'
 				/>
-				<div className="task-field__file-add">
+				<div className="file-container__file-add">
 				 +
 				</div>
 			</label>

@@ -2,9 +2,9 @@
 @import "./varibels.scss";
 @import "./mixins.scss";
 
-.task-item {
-	
-	&__checkbox {
+.checkbox-container {
+
+&__checkbox {
 		@extend %template-checkbox;
 
 		& input {
@@ -12,7 +12,7 @@
 		}
 
 		& input:checked~div {
-			background-color: $checkboxBackgroundChecked;
+			background-color: #5df71571;
 		}
 
 		& input:checked~div:after {
@@ -20,12 +20,12 @@
 		}
 
 		&:hover input:checked~div {
-			background-color: $checkboxBackgroundHover;
+			background-color: #f7ca1577;
 		}
 
 		& div {
 			@extend %template-checkbox__checkmark;
-		
+
 			@media (max-width: 500px) {
 				height: $checkboxHeightSmall;
 				width: $checkboxWidthSmall;
@@ -34,7 +34,7 @@
 
 		& div:after {
 			@extend %template-checkbox__checkmark_active;
-			
+
 			@media (max-width: 500px) {
 				left: 6px;
 				top: 2px;
@@ -42,37 +42,16 @@
 				height: 8px;
 			}
 		}
-
 	}
 
-	&__title {
-		@include setBox($taskItemTitleMargin, $taskItemTitlePadding);
-		@extend %template-title-font;
-		@extend %template-wrap;
-		@extend %template-overflow;
+	&__check-description {
+		@extend %template-checkbox__description;
+		@extend %template-font_description;
 
-		cursor: pointer;
-	
-		&_deadmen {
-				color: $titleDeadmenColor;
-		}
-		
-		&_complite {
-			color: $titleCompliteColor;
-		}
-		
 		@media (max-width: 500px) {
-			font: $templateTitleFontSmall;
+			font: $templateDescriptionFontSmall;
+			padding-left: $checkboxDescriptionPadding;
 		}
 	}
 
-	&__title:hover {
-		color: $titleHoverColor;
-	}
-
-
-	&__file-anchor{
-		justify-self: center;
-	}
 }
-

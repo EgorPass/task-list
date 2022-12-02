@@ -12,11 +12,11 @@ import { deleteObject, getStorage, ref as storageRef, uploadBytesResumable, getD
  * @param {string} path строка пути до места в realTimeDatabase для обновления (может быть как "/"),
  * @param {string | number} field поле задачи в realTimeDatabase,
  * @param {string | null | object | boolean| number} prop значение для поля задачи
- * @returns {void}
+ * @returns 
  */
 export const setFieldAtDatabase = async (path, field, prop) => {
 		const db = databasRef(getDatabase(), path)
-		await update(db, { [field]: prop })
+		return await update(db, { [field]: prop })
 }
 
 
@@ -24,7 +24,7 @@ export const setFieldAtDatabase = async (path, field, prop) => {
  * Возвращает данные с realtimeDatabase зависимости от запроса в парамтере path.
  * 
  * @param {string} path путь внутри realtimeDatabase,
- * @returns {object | string} может вернуть объект или строку
+ * @returns {Promis<object | string>} может вернуть объект или строку
  */
 export const getFilesFromDatabase = async (path) => {
 	const map = await get(child(databasRef(getDatabase()), path))	
@@ -36,8 +36,6 @@ export const getFilesFromDatabase = async (path) => {
  * Удаляет файл из storageFirebase по пути path (укзывается с названием, которое должно передаться в file)
  * 
  * пример для заполнения path: id/nameFolder/nameFile
- * 
- * 
  * 
  * @param {string} path путь до файла для удаления,
  * @param {string} file опциональный параметр, имя файла для удаления,

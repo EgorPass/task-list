@@ -1,5 +1,5 @@
-import { useContextData } from "../../hooks/useContextData";
 import { FileLoader } from "../fileLoader/FileLoader";
+import { FileItem } from "../fileItem/FileItem";
 
 /**
  * Компонент контейнер создает контейнер списка с калассом "task-field__file-list" для размещения списка загруженных файлов.
@@ -18,38 +18,20 @@ import { FileLoader } from "../fileLoader/FileLoader";
  */
 export const FileConetnt = ({id, files }) => {
 	
-	const { clickAtFile, clickAtRemoveFile, fileContainerRef, loadState,  } = useContextData();
-
-	const entries = ( files && Object.entries(files) ) || []
-	
+	const entries = ( files && Object.entries(files) ) || []	
 
 	return (
-		<ul className="task-field__file-list" ref = {fileContainerRef}>
+		<ul className="file-container__file-list" >
 			{
 				entries && entries.map( ([fileId, name]) => ( 
 
 					<li
 						key={`li$	${fileId}`}
 						data-item = {fileId}
-						className="task-field__file-item"
+						className="file-container__file-item"
 					>
-							<span
-								className = "task-field__file-name"
-								onClick = {(e)=> clickAtFile(id, fileId, name)}
-							>
-								{name}
-							</span>
-							<span
-								key={`span${id}`}
-							className={`task-field__file-remove_${(
-								loadState[fileId] && loadState[fileId] < 100 ? "hidden": "visible"
-							)}`}
-								onClick = {(e)=> {clickAtRemoveFile(id, fileId, name)}}
-						>
-							X
-						</span>
-						
 						<FileLoader loaderId={fileId} id={id} />
+						<FileItem id = {id} fileId = {fileId} name = {name} />
 					</li>
 					) 
 				)

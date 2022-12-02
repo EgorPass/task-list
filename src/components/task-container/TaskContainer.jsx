@@ -1,4 +1,4 @@
-import { useContextData } from "../../hooks/useContextData";
+import { useContextData } from "../../ComponentsHooks/useContextData";
 import { TaskItemList } from "../taskItemList/TaskItemList";
 
 /**
@@ -6,9 +6,9 @@ import { TaskItemList } from "../taskItemList/TaskItemList";
  * 
  * Отрисовывает контейнер списка с калссом "task-body__task-container task-container", и вложенные в него элементы списка с калссом "task-container__task-item task-item".
  * 
- * Через контекст принимает масив с объектом задач taskState, и из этого масива строятся элементы списка задач с классом "task-container__task-item task-item".
+ * Через контекст принимает масив с объектом задач tasks, и из этого масива строятся элементы списка задач с классом "task-container__task-item task-item".
  * 
- * Каждый элемент списка отрисовывает компонент TaskItemList в который передается отдельный объект из масива объектов taskEdit
+ * Каждый элемент списка отрисовывает компонент TaskItemList в который передается отдельный объект из состояния tasks
  * 
  * Родительский компонент TaskBody.
  * 
@@ -16,14 +16,14 @@ import { TaskItemList } from "../taskItemList/TaskItemList";
  */
 export const TaskContainer = () => {
 
-	const {taskState} = useContextData()
+	const {tasks} = useContextData()
 
 	return (
 
 		<div className="task-body__content-container">
 			<ul className = "task-body__task-container task-container">
 				{
-					taskState && taskState.map(it => (
+					tasks.map(it => (
 						<li
 						key = {`${it.id}`}
 						className="task-container__task-item task-item"

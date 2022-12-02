@@ -1,0 +1,25 @@
+@import "./template.scss";
+@import "./varibels.scss";
+@import "./mixins.scss";
+
+.description-container {
+	&__description {
+		box-sizing: border-box;
+		position: absolute;
+		top: 0;
+		left: 0%;
+
+		resize: none;
+		width: 100%;
+		height: 100%;
+
+		padding: 0px;
+		margin: 0;
+
+		outline: none;
+		border: none;
+		@extend %template-font_description;
+
+		background-color: $backgroungField;
+	}
+}

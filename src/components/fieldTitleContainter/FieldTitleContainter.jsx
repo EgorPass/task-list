@@ -1,16 +1,15 @@
-import { Title } from "../title/Title";
-import { EditTextField } from "../editTextField/EditTextField";
-import { useContextData } from "../../hooks/useContextData"
+import { useContextData } from "../../ComponentsHooks/useContextData"
+import { EditableTextField } from "../editableTextField/EditableTextField";
+
+import "../../styles/title-container.scss"
 
 /**
  * Компонент контейнер, для отрисовки названия задачи в поле описания задачи.
  * 
- * Принимает в пропсы объект массива taskState  
+ * Принимает в пропсы объект массива tasks  
  * 
- * Отрисовывает компонент только один компонент, Title либо EditTextField, в зависимости от значения параметра edit - если null то Title, иначе EditTextField.
- * 
- * Отрисовывает только один компонент, DeadlineForTask или EditDateField 
- * 
+ * Отрисовывает компонент только один компонент, Title
+ *  
  * Через контекст принимает функцию setModeForTitle, которая создает модификотр для пропса className компонента Title.
  * 
  * Родительский компонент TaskItemField.
@@ -22,23 +21,28 @@ import { useContextData } from "../../hooks/useContextData"
  * @param {object | null} param.edit объект который содержит информацию для режима редактирования
  * @returns 
  */
-export const FieldTitleContainer = ({ title, edit, isComplite, deadline }) => {
+export const FieldTitleContainer = ({ title, isComplite, deadline }) => {
 
 	const { setModeForTitle } = useContextData();
 	const classNameMod = setModeForTitle (deadline, isComplite)
 
 		return (
-		<div className="task-field__title-container">
-				<Title
-						title={title}
-						className={`task-field__title task-field__title_${classNameMod}`}
-				/>
-			{
-				edit && <EditTextField
-					field="title"
-					className="task-field__edit-field task-field__edit-field_title"
-				/>
-			}
+			<div className="task-field__title-container title-container">
+				<div className = "task-field__text-height">	
+
+					
+					{title}
+
+					<EditableTextField
+						field="title"
+						content = {title}
+						className={
+							`title-container__title title-container__title_${classNameMod}`
+						}
+					/>
+			
+				
+				</div>
 		</div>
 	)
 }

@@ -1,23 +1,40 @@
-import React, {  useEffect } from "react";
-import { MyContext} from "./hooks/useContextData"
+import React, { useState, useEffect } from "react";
+import { MyContext} from "./ComponentsHooks/useContextData"
 
-import { useContentState } from "./hooks/useContentState"
-import { monitor, getFilesFromDatabase } from "./hooks/useFirebase"
+import { useEdit } from "./ComponentsHooks/useEdit"
+import { useClicks } from "./ComponentsHooks/useClicks"
+import { useGetStore } from "./redux/reduxHooks/useGetStore";
+import { monitor } from "./ComponentsHooks/useFirebase"
+import { useFilesContent } from "./ComponentsHooks/useFilesContent"
+
+import { useTasksActions } from "./redux/reduxHooks/useBindActions";
 
 import { TaskBody } from "./components/taskBody/TaskBody"
 
 function App() {
 	
-	const value = useContentState() 
-	const {	search, setTaskState	} = value
-		
+	console.log("render...")
+
+	const [cancelState, setCancelState] = useState(null);
+	const store = useGetStore()
+	const editMethods = useEdit();
+	const {getTasks} = useTasksActions()	
+	const clicksMethods = useClicks(cancelState)
+	const filesMethods = useFilesContent(cancelState, setCancelState)
+
 	useEffect(() => {
-		if (!search) monitor(setTaskState)
-	}, [setTaskState, search])
+			monitor(getTasks)
+	}, [])
 
 	return (
 
-		<MyContext value={	value	}>
+		<MyContext value={
+			{
+				...store,
+				...editMethods,
+				...filesMethods,
+				...clicksMethods,
+			}}>
 			<TaskBody />
 		</MyContext>
   );	

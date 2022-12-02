@@ -1,5 +1,5 @@
-import { useContextData } from "../../hooks/useContextData"
-
+import { useContextData } from "../../ComponentsHooks/useContextData"
+import { useGetStore } from "../../redux/reduxHooks/useGetStore"
 
 /**
  * Компонент отрисовывает степень загрузки загружаемого файла
@@ -18,24 +18,25 @@ import { useContextData } from "../../hooks/useContextData"
  */
 export const FileLoader = ({ loaderId , id}) => {
 
-	const { loadState, clickAtCancelLoad } = useContextData()
+	const { clickAtCancelLoad } = useContextData()
+	const { loadingFiles } = useGetStore();
+	const state = (loaderId in loadingFiles)
+	
 	let progress = 0
 	
-	const state = loadState[loaderId] ? true : false
-	
-	if (!!state) {
-		progress = loadState[loaderId]
+	if (state) {
+		progress = loadingFiles[loaderId].progress
 	}
 
-	if (loadState[loaderId] && progress < 100) return (
-		<div className={`task-field__file-loader_visible`} data-loader={loaderId}>
+	if (state) return (
+		<div className={`file-container__file-loader`} data-loader={loaderId}>
 			<div
 				style={{ width: `${progress}%` }}
-				className="task-field__file-loader-progress"
+				className="file-container__file-loader-progress"
 			></div>
 			<span
 				onClick = {()=> clickAtCancelLoad(id, loaderId)}
-				className="task-field__file-loader-cancel_visible"
+				className="file-container__file-loader-cancel"
 			>X</span>
 		</div>
 	)

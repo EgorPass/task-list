@@ -1,10 +1,10 @@
-import { useContextData } from "../../hooks/useContextData"
+import { useContextData } from "../../ComponentsHooks/useContextData"
 
 
 /**
  * Создает элемент заголовка для названия задиня.
  * 
- * Родительские компоненты: FieldTitleContainer и TaskItemList.
+ * Родительские компонент TaskItemList.
  * 
  * Обрабатывает клик для открытия описания поля задачи.
  * 
@@ -21,10 +21,12 @@ export const Title = ({  id, title, className }) => {
 	const { clickAtTitle } = useContextData()
 
 	return (
-		<pre
-			className={className}
+		<h2
+			className={className }
 			onClick= {()=>clickAtTitle(id)}
-		> {title}</pre>
+		>
+			{title}
+		</h2>
 	)
 		
 }

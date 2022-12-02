@@ -1,8 +1,7 @@
-import { useContextData } from "../../hooks/useContextData"
-import { FileLoader } from "../fileLoader/FileLoader"
 import { FileConetnt } from "../fileContent/FileContent"
 import { FileAddButton } from "../fileAddButton/FileAddButton"
 
+import "../../styles/file-container.scss"
 
 /**
  * Компонент контейнер для создания раздела загрузки файлов в поле описания задачи.
@@ -19,11 +18,8 @@ import { FileAddButton } from "../fileAddButton/FileAddButton"
  */
 export const FieldFileContainer = ({id, files}) => {
 
-	const { createState, editState} = useContextData()
-
-	if(createState || editState) return null
-	else return (
-		<div className="task-field__file-container">	
+		return (
+		<div className="task-field__file-container file-container">	
 				<FileConetnt files={files} id={id} />
 				<FileAddButton id={id} />
 		</div>

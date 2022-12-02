@@ -1,4 +1,4 @@
-import { useContextData } from "../../hooks/useContextData" 
+import { useContextData } from "../../ComponentsHooks/useContextData" 
 
 /**
  * Создает элемент кнопки, которая отрисовывается в компоненте FieldButtonContainer.
@@ -17,7 +17,7 @@ export const RemoveItemButton = ({ id }) => {
 	return (
 		<button
 			onClick = {(e) => { clickAtRemoveButton(id)} }
-			className="task-field__item-button"
+			className="button-container__item-button"
 		>
 			Удалить
 		</button>

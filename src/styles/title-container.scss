@@ -1,0 +1,40 @@
+@import "./template.scss";
+@import "./varibels.scss";
+@import "./mixins.scss";
+
+.title-container {
+	&__title {
+		box-sizing: border-box;
+		position: absolute;
+		top: 0;
+		left: 0%;
+	
+		resize: none;
+		width: 100%;
+		height: 100%;
+	
+		padding: 0px;
+		margin: 0;
+
+		outline: none;
+		border: none;
+
+		text-align: center;
+
+		@extend %template-title-font;
+		
+		background-color: $backgroungField;
+
+		&_deadmen {
+			color: $titleDeadmenColor;
+		}
+
+		&_complite {
+			color: $titleCompliteColor;
+		}
+
+		@media (max-width: 500px) {
+			font: $templateTitleFontSmall;
+		}
+	}
+} 

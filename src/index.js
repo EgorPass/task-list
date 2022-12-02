@@ -1,17 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import { Provider } from "react-redux"
+import {store} from "./redux/store/store.js"
+
 import "./firebase"
 
-import './styles/index.scss';
-import './styles/task-header.scss';
-import './styles/task-container.scss';
-import './styles/task-field.scss';
-import './styles/task-item.scss';
+import App from './App';
 
+import './styles/index.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+	<Provider store = {store}>
     <App />
+	</Provider>
 );
 

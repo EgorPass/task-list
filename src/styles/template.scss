@@ -4,9 +4,7 @@
 
 %template-wrap {
 	hyphens: auto;
-	// white-space: pre-line;
 	white-space: pre-wrap;
-	// white-space: break-spaces;
 	// word-break: break-all;
 }
 
@@ -16,11 +14,7 @@
 	overflow-x: hidden;
 }
 
-%template-title {
-	margin: 0;
-	padding: 5px;
-	max-height: 90px;
-
+%template-title-font {
 	font: $templateTitleFontBig;
 	color: $templateTitleColor;
 	text-shadow: $templateTitleTextShadow;
