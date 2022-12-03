@@ -1,6 +1,6 @@
 import { deleteFileFromStorage, uploadFileToStorage, setFieldAtDatabase, getFilesFromDatabase, downlaodFileFromStorage } from "./useFirebase"
 import { useGetStore} from "../redux/reduxHooks/useGetStore"
-import { useFieldActions, useLoadingFilesActions } from "../redux/reduxHooks/useBindActions" 
+import { useFieldActions, useLoadingFilesActions, useTooltipActions } from "../redux/reduxHooks/useBindActions" 
 
 /**
  * хук для раздела загрузки файлов: загрузка, сохранение
@@ -13,8 +13,9 @@ import { useFieldActions, useLoadingFilesActions } from "../redux/reduxHooks/use
  */
 export const useFilesContent = (cancelState, setCancelState) => {
 
-	const {  loadingFiles }= useGetStore()
+	const {  loadingFiles, tooltip }= useGetStore()
 	const { setField } = useFieldActions();
+	const { removeTooltip } = useTooltipActions()
 	const { setLoadingFiles, updateProgress, deleteLoadingFile } = useLoadingFilesActions()
 
 	/**
@@ -106,6 +107,8 @@ export const useFilesContent = (cancelState, setCancelState) => {
 	const clickAtCancelLoad = async (id, fileId, name) => {
 		if (fileId in loadingFiles) {
 
+			if(tooltip) removeTooltip()
+
 			deleteLoadingFile(fileId)
 			cancelState[fileId].cancel()
 			updateField(id, `${id}/files/`,fileId, null)		
@@ -127,6 +130,8 @@ export const useFilesContent = (cancelState, setCancelState) => {
 	 * @returns {void}
 	 */
 	const clickAtRemoveFile = async (id, fileId, name) => {
+			if(tooltip) removeTooltip()
+
 		deleteFileFromStorage(`${id}/${fileId}/${name}`, name)
 		updateField(id, `${id}/files/`, fileId, null)
 	}

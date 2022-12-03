@@ -1,17 +1,16 @@
 import { FileConetnt } from "../fileContent/FileContent"
-import { FileAddButton } from "../fileAddButton/FileAddButton"
+import { FileAddButton } from "../buttons/FileAddButton"
 
 import "../../styles/file-container.scss"
 
 /**
  * Компонент контейнер для создания раздела загрузки файлов в поле описания задачи.
  * 
- * Компонент отрисовывает компоненты FileContent и FileAddButton, только если состояния createState и editState выставлены в null.
- * То есть компонент не отрисовывается если поле описания задач в режиме редактирования или эта задача только создана.
+ * Компонент отрисовывает компоненты FileContent и FileAddButton.
  * 
  * Родительский компонент TaskItemField.
  * 
- * @param {object} param
+ * @param {object} param0
  * @param {number | string} param.id id индификатор задачи (обекта из массива taskState), использутся для передачи в дочерние компоненты для их обработчиков,
  * @param {object | null} param.edit объект который содержит информацию для режима редактирования
  * @returns 

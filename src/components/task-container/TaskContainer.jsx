@@ -1,6 +1,9 @@
 import { useContextData } from "../../ComponentsHooks/useContextData";
 import { TaskItemList } from "../taskItemList/TaskItemList";
 
+import '../../styles/task-container.scss';
+
+
 /**
  * Компонент контейнер, создает блок с классом "task-body__content-container" для размещения списка задач.
  * 

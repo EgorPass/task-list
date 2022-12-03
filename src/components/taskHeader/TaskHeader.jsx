@@ -1,4 +1,7 @@
-import { useContextData } from "../../ComponentsHooks/useContextData";
+import { SearchField } from "../searchField/SearchField";
+import { CreateButton } from "../buttons/CreateButton";
+
+import '../../styles/task-header.scss';
 
 
 /**
@@ -15,26 +18,11 @@ import { useContextData } from "../../ComponentsHooks/useContextData";
  */
 export const TaskHeader = () => {
 
-	const {changeSearch, search, createTask} = useContextData()
-
 	return (
 		<div className = "task-body__task-header task-header">
 				
-			<div className="task-header__search-field">
-				<input
-					type="search"
-					onChange={changeSearch}
-					value = {search}
-				/>
-			</div>
-			<div className="task-header__create-button">
-				<button
-					onClick={(e) => {createTask() }}
-					className="task-header__item-button"
-				>
-						+
-				</button>
-			</div>				
+			<SearchField />
+			<CreateButton />
 
 		</div>
 

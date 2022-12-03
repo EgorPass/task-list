@@ -4,10 +4,7 @@ import { TaskHeader } from "../taskHeader/TaskHeader";
 import { TaskContainer } from "../task-container/TaskContainer";
 import { TaskItemField } from "../taskItemField/TaskItemField"
 
-
 import "../../styles/task-body.scss"
-import '../../styles/task-header.scss';
-import '../../styles/task-container.scss';
 
 /**
  * Компонент отрисовывает блок контейнр в котором отрисовывается три основные блока из которых состоит список задач: TaskHeader, TaskContainer и TaskItemField.
@@ -24,7 +21,6 @@ export const TaskBody = () => {
 
 	const { field  } = useContextData()
 
-	
 	return (
 		<div className="task-body">
 			<TaskHeader />
@@ -33,6 +29,8 @@ export const TaskBody = () => {
 			{
 				(field) && <TaskItemField task={field} />
 			}
+			
+			
 
 		</div>
 

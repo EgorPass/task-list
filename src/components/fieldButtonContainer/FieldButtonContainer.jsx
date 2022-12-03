@@ -12,7 +12,7 @@ import "../../styles/button-container.scss"
  * 
  * Родительский компонент TaskItemField.
  * 
- * @param {object} param
+ * @param {object} param0
  * @param { number | string } param.id индификатор задачи (обекта из массива taskState), использутся для передачи в дочерние компоненты для их обработчиков,
  * @param {object | null} param.edit объект который содержит информацию для режима редактирования
  * @returns 

@@ -5,6 +5,11 @@
  */
 export const FileAnchor = () => {
 	return (
-		<span className="task-item__file-anchor">&#128206;</span>
+		<span
+			data-task-tooltip = "Задача содержит прекрипленные файлы"
+			className="task-item__file-anchor"
+		>
+			&#128206;
+		</span>
 	)
 }

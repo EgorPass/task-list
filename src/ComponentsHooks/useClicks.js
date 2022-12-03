@@ -13,7 +13,7 @@ export function useClicks(cancelState) {
 	const { setField } = useFieldActions();
 	const { removeTask } = useTasksActions();
 	const { setCreateState } = useCreateActions();
-	const { tasks, field, createState, }= useGetStore()
+	const { tasks, field, createState }= useGetStore()
 	
 	/**
 	 * Вспомогательная функция, которая используется для создания объекта новой задачи, внутри функции createTask.
@@ -28,7 +28,7 @@ export function useClicks(cancelState) {
 			id,
 			title: "Новая задача",
 			description: "описание задачи",
-			deadline: "2022-12-01",
+			deadline: "2023-02-05",
 			isComplite: false,
 			files: {}
 		}

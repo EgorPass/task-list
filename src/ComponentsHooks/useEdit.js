@@ -25,15 +25,11 @@ export const useEdit = () => {
 	 * @param {string} prop свойство поля в которое вносяться изменения,  
 	 * @param {string} str новое занчение для свойства field в editState и fieldState,
  	 */
-	const changeEditState = (prop, str,) => {
-		if (str === "" ) str = "    "
-		if (str.endsWith("\n")) str += "    "
-		
+	const changeEditState = (prop, str,) => {		
 		setField({
 			...field,
 			[prop]: str
 		})
-
 	}
 
 	/**

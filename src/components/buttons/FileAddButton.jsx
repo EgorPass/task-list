@@ -25,7 +25,10 @@ export const FileAddButton = ({ id }) => {
 					type="file"
 					className = 'file-container__file-add-input'
 				/>
-				<div className="file-container__file-add">
+				<div
+					className="file-container__file-add"
+					data-task-tooltip = "Прикрепить файл к задаче"
+				>
 				 +
 				</div>
 			</label>

@@ -11,7 +11,7 @@ import { FileItem } from "../fileItem/FileItem";
  * loadState использутеся для определения модификатора класса для кнопки удаления загруженного файла
  * 
  * Родительский компонент FieldFileContainer.
- * @param {object} param
+ * @param {object} param0
  * @param {string | number} param.id индификатор задачи (обекта из массива taskState), использутся для обработки кликов в методами clickAtFile и clickAtRemoveFile,
  * @param {object} param.files объект с информацие по загруженным файлам к задаче
  * @returns 

@@ -1,24 +1,26 @@
-import { useContextData } from "../../ComponentsHooks/useContextData"
 import { useGetStore } from "../../redux/reduxHooks/useGetStore"
+
+import { FileLoaderCancel } from "../buttons/FileLoaderCancel"
+
+import { FileLoaderProgress } from "../fileLoaderProgress/FileLoaderProgress";
 
 /**
  * Компонент отрисовывает степень загрузки загружаемого файла
  * 
- * Компонент отрисовывается в случае если loaderId есть в loadState
- * По loadState[loaderId] заполняется ширина для уровня загрузки
+ * Компонент отрисовывается в случае если loaderId есть в loadingFiles
+ * По loadingFiles[loaderId] заполняется ширина для уровня загрузки
  * 
- * Через конеткст принимает loadState, clickAtCancelLoad
+ * Через конеткст принимает loadingFiles, clickAtCancelLoad
  *  
  * Родительский компонент FileConetnt
  * 
- * @param {object} param 
+ * @param {object} param0
  * @param {string | number} param.loaderId индификатор который присуждается при файлу при его создании
  * @param {string | number} param.id индификатор задачи (обекта из массива taskState), использутся для обработка clickAtCancelLoad
  * @returns 
  */
 export const FileLoader = ({ loaderId , id}) => {
 
-	const { clickAtCancelLoad } = useContextData()
 	const { loadingFiles } = useGetStore();
 	const state = (loaderId in loadingFiles)
 	
@@ -30,14 +32,10 @@ export const FileLoader = ({ loaderId , id}) => {
 
 	if (state) return (
 		<div className={`file-container__file-loader`} data-loader={loaderId}>
-			<div
-				style={{ width: `${progress}%` }}
-				className="file-container__file-loader-progress"
-			></div>
-			<span
-				onClick = {()=> clickAtCancelLoad(id, loaderId)}
-				className="file-container__file-loader-cancel"
-			>X</span>
+
+			<FileLoaderProgress progress = {progress} />
+			<FileLoaderCancel id={id} loaderId={loaderId} />
+			
 		</div>
 	)
 	else return null;

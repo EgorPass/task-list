@@ -8,13 +8,13 @@ import "../../styles/title-container.scss"
  * 
  * Принимает в пропсы объект массива tasks  
  * 
- * Отрисовывает компонент только один компонент, Title
+ * Отрисовывает компонент EditableTextField и поле подложку для него.
  *  
- * Через контекст принимает функцию setModeForTitle, которая создает модификотр для пропса className компонента Title.
+ * Через контекст принимает функцию setModeForTitle, которая создает модификотр для пропса className компонента EditableTextField.
  * 
  * Родительский компонент TaskItemField.
  * 
- * @param {object} param
+ * @param {object} param0
  * @param {string} param.title название задачи, передается в Title,
  * @param {boolean} param.isComplite состояние готовности выполнения задачи, используется в функции setModeForTitle для создания модификатора пропса className компонента Title.
  * @param {string | number} param.deadline дата до которай нужно выплнить задачу, используется в функции setModeForTitle для создания модификатора пропса className компонента Title.
@@ -29,10 +29,8 @@ export const FieldTitleContainer = ({ title, isComplite, deadline }) => {
 		return (
 			<div className="task-field__title-container title-container">
 				<div className = "task-field__text-height">	
-
-					
 					{title}
-
+					&nbsp;
 					<EditableTextField
 						field="title"
 						content = {title}

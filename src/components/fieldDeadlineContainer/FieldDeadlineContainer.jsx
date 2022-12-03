@@ -3,13 +3,14 @@ import { DeadlineForTask } from "../deadlineForTask/DeadlineForTask";
 import "../../styles/deadline-container.scss"
 
 /**
- * Компонент контейнер, создает блок с классом "task-field__deadline-container" для размещения элементов о дате до которой нужно завершить задачу или изменению этой даты в поле описания задачи.
+					< DeadlineForTask id={id}  deadline={deadline}	/>
+ * Компонент контейнер, создает блок с классом "task-field__deadline-container" для размещения элементов о дате формируемой компонентом, до которой нужно завершить задачу или изменению этой даты в поле описания задачи.
  * 
  * Из параметров deadline, isComplite и текущей даты формирует фразу, которая ставиться перед датой.
  * 
  * Родительский компонент TaskItemField.
  * 
- * @param {object} param 
+ * @param {object} param0
  * @param {number | string} param.id индификатор задачи (обекта из массива taskState), использутся для передачи в дочерние компоненты для их обработчиков,
  * @param {number | string} param.deadline дата до которой нужно выполнить задачу,
  * @param {boolean} param.isComplite состояние готовности задачи,

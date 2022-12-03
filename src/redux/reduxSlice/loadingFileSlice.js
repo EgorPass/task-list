@@ -17,7 +17,6 @@ export const { actions: loadingFilesActions, reducer: loadingFiles } = createSli
 			},
 			reducer: (state, action) => {
 				const prop = action.payload
-				console.log(prop)
 
 				return {...state, ...prop}
 			}

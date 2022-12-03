@@ -7,6 +7,8 @@ import { loadingFilesActions } from "../reduxSlice/loadingFileSlice"
 import { createActions } from "../reduxSlice/createStateSlice"
 import { searchActions } from "../reduxSlice/searchSlice"
 
+import { tooltipActions } from "../reduxSlice/tooltipSlice"
+
 export const useTasksActions = () => {
 	const dispatch = useDispatch();
 	return bindActionCreators(tasksActions, dispatch)
@@ -32,3 +34,7 @@ export const useSearchActions = () => {
 	return bindActionCreators(searchActions, dispatch)
 }
 
+export const useTooltipActions = () => {
+	const dispatch = useDispatch();
+	return bindActionCreators(tooltipActions, dispatch)
+}

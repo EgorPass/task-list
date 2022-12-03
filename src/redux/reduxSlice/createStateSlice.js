@@ -7,7 +7,6 @@ export const { actions: createActions, reducer: createState } = createSlice({
 		setCreateState: {
 			prepare: (val) => ({payload: val}),
 			reducer: (state, {payload}) => { 
-				console.log(payload)
 				return payload
 			 },
 

@@ -10,13 +10,13 @@ import '../../styles/task-item.scss';
  * 
  * Принимает в пропсы объект массива tasks 
  * 
- * Отрисовывает компоненты Checkbox и Title.
+ * Отрисовывает компоненты Checkbox, Title и FileAnchor.
  * 
  * Через контекст принимает функцию setModeForTitle, которая создает модификотр для пропса className компонента Title.
  * 
  * Родительский компонент TaskContainer.
  * 
- * @param {object} param
+ * @param {object} param0
  * @param {string | number} param.id индификатор задачи (обекта из массива taskState), использутся для передачи в дочерние компоненты для их обработчиков кликов,
  * @param {string} param.title название задачи, передается в Title,
  * @param {boolean} param.isComplite состояние готовности выполнения задачи, используется в функции setModeForTitle для создания модификатора пропса className компонента Title.

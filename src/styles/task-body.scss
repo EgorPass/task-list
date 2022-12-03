@@ -2,6 +2,26 @@
 @import "./varibels.scss";
 @import "./mixins.scss";
 
+#task-body__task-tooltip {
+	
+	& .task-tooltip__tooltip {
+		position: fixed;
+		z-index: 10;
+		// width: auto;
+		word-break: break-all;
+		max-width: 250px;
+		border: 1px gray solid;
+		border-radius: 10px;
+		box-shadow: 1px 1px 3px gray;
+		padding: 8px 14px;
+
+		font: italic normal 14px/1 Time serif;
+		background-color: #eeee;
+	}
+
+}
+
+
 .task-body {
 	width: $taskBody;
 	margin: 20px auto;

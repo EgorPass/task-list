@@ -10,10 +10,10 @@ import { useContextData } from "../../ComponentsHooks/useContextData"
  * 
  * Через контекст принимает clickAtCheckbox для обработки клика.
  * 
- * @param {object} param 
+ * @param {object} param0
  * @param {boolean} param.isComplite параметр принимает от родительского компонента, используется в аттрибуте checked тэга input,
  * @param {number | string} param.id индификатор задачи (обекта из массива taskState), использутся в обработчике clickAtCheckbox,
- * @param {string} className для определения класса от родительского компонента
+ * @param {string} param.className для определения класса от родительского компонента
  * @returns 
  */
 export const Checkbox = ({ isComplite, id, className }) => {

@@ -51,6 +51,7 @@
 		@extend %template-wrap;
 		@extend %template-overflow;
 
+		justify-self: start;
 		cursor: pointer;
 	
 		&_deadmen {
