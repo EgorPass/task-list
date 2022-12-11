@@ -1,25 +1,29 @@
-import { useContextData } from "../../ComponentsHooks/useContextData"
 
 /**
  * Компоненте рисует в FileLoader кнопку отмены загрузки
  * 
- * Для реализации отмены принимает clickAtCancelLoad через контекст
+ * Не мемоизируем, зависит от сотостояния uploadFile, которое постоянно обновляется при загрузке файла.
  * 
  * @param {object} param0
- * @param {string | number} param.id индификатор для обработчика клика clickAtCancelLoad
- * @param {string | number} param.liaderId инфификатор файла для хранилища
+ * @param {string | number} param0.id 
+ * @param {string | number} param0.liaderId 
+ * @param {function} param0.clickAtCancelLoad
+ * 
+ * @param id индификатор для обработчика клика clickAtCancelLoad
+ * @param liaderId инфификатор файла в хранилище
+ * @param clickAtCancelLoad обработчик для отмены загрузки 
  * @returns 
  */
-export const FileLoaderCancel = ({ id, loaderId }) => {
-	
-	const { clickAtCancelLoad } = useContextData()
+export const FileLoaderCancel =	( { id, fileId, clickAtCancelLoad } ) => {
+
+	console.log( "///file cancel render ..." )
 
 	return (
-		<span
-			onClick = {()=> clickAtCancelLoad(id, loaderId)}
-			className="file-container__file-loader-cancel"
-			data-task-tooltip = {`Отменить загрузку`}
-		>X</span>
+		<div
+			onClick = { () => clickAtCancelLoad( id, fileId ) }
+			className = "file-container__file-loader-cancel"
+			data-task-tooltip = "Отменить загрузку"
+		>X</div>
 
 	)
 }

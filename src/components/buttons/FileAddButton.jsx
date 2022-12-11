@@ -1,37 +1,36 @@
-import { useContextData } from "../../ComponentsHooks/useContextData"
+import { memo } from "react";
 
 /**
- * Создает кнопку добавления файла в раздел загрузки файлов о поле описания задачи.
+ * Создает мемоизированный компонент, кнопку добавления файла в раздел загрузки файлов в поле описания задачи.
  * 
- * Через контекст принимает clickAtAddFile для обработки клика.
+ * @param {number | string} nextProp.id индификатор задачи (обекта из массива taskState), использутся в обработчике clickAtAddFile
+ * @param {function} nextProp.clickAtAddFile обработчик для создания новой задачи
  * 
- * Родительский компонент FieldFileContainer.
- * 
- * @param {{id:number | string}} id индификатор задачи (обекта из массива taskState), использутся в обработчике clickAtAddFile 
  * @returns 
  */
-export const FileAddButton = ({ id }) => {
+export const FileAddButton =
+	memo(
+	( { id, clickAtAddFile } ) => {
+		
+		console.log( "//file add button render ...", id )
 
-	const {clickAtAddFile} = useContextData()
-
-	return (
-		<div className="file-container__file-add-position">
-			<label
-				// className="task-field__file-add"
-			>
-				<input
-					onChange = {(e)=> clickAtAddFile(id, e.target)}
-					name = "files"
-					type="file"
-					className = 'file-container__file-add-input'
-				/>
-				<div
-					className="file-container__file-add"
-					data-task-tooltip = "Прикрепить файл к задаче"
-				>
-				 +
-				</div>
-			</label>
-		</div>
-	)
-}
+		return (
+			<div className = "file-container__file-add-position">
+				<label>
+					<input
+						onChange = {(e) => clickAtAddFile( id, e.target ) }
+						name = "files"
+						type = "file"
+						className = 'file-container__file-add-input'
+					/>
+					<div
+						className = "file-container__file-add"
+						data-task-tooltip = "Прикрепить файл к задаче"
+					>
+						+
+					</div>
+				</label>
+			</div>
+		)
+	}
+)

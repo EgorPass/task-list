@@ -1,0 +1,52 @@
+//////////////// fonts /////////////
+
+$textShadowMain: 1px 1px 1px rgb(100, 168, 73);
+$textShadowContr: 1px 1px 1px black;
+
+// search//
+
+$searchFont: bold 16px/1 Time serif;
+
+// create-button
+
+$createButtonFont: bold 18px/1 sans-serif;
+
+// title //
+
+$titleFont: bold 24px/1.2 Time serif;
+$titleFontSmall: 20px/1.2 bold Time serif;
+
+$titleColor: gray;
+$titleHoverColor: rgb(210, 231, 161);
+$titleCompliteColor: rgb(96, 184, 96);
+$titleDeadmenColor: rgb(183, 95, 95);
+
+
+// description //
+
+$descriptionColor: black;
+$descriptionFont: normal 18px/1.2 Time serif;
+$descriptionFontSmall: normal 16px/1.2 Time serif;
+
+
+// file-name
+
+$fileNameFont: 14px/1.2 Time serif;
+$fileNameColor: black;
+$fileNameTextShadow: 1px 1px 1px gray;
+
+$fileNameColorHover: blue;
+$fileNameTextDecorHover: underline;
+
+// file-add-button
+
+$fileAddFont: bold 18px/1 Time sans-serif;
+$fileAddFontSmall: bold 12px/1 Time serif;
+
+
+$fileRemoveFont: bold 8px sans-serif;
+
+// field-button
+
+$itemButtonFont: bold 16px/1 Time serif;
+$itemButtonFontSmall: bold 14px/1 Time serif;

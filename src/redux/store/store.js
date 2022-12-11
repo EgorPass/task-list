@@ -1,18 +1,28 @@
 import { configureStore } from "@reduxjs/toolkit"
+
+import { loader } from "../reduxSlice/createLoader.js"
 import { tasks } from "../reduxSlice/tasksSlice.js"
-import { field } from "../reduxSlice/fieldSlice.js"
-import { loadingFiles } from "../reduxSlice/loadingFileSlice.js"
-import { createState } from "../reduxSlice/createStateSlice.js"
-import { search } from "../reduxSlice/searchSlice.js"
+
+import { search } from "../reduxSlice/headerState/searchSlice.js"
+
+import { textField } from "../reduxSlice/fieldState/textFieldSlice.js"
+import { fieldState } from "../reduxSlice/fieldState/fieldStateSlice.js"
+import { uploadFile } from "../reduxSlice/fieldState/uploadFileSlice.js"
+import { taskFile } from "../reduxSlice/fieldState/taskFileSlice.js"
+
 import { tooltip } from "../reduxSlice/tooltipSlice.js"
 
 export const store = configureStore({
 	reducer: {
-		tasks,
-		field,
+		loader,
+		taskFile,
+		
 		search,
+		tasks,
+
+		fieldState,
+		textField,
 		tooltip,
-		createState,
-		loadingFiles,
+		uploadFile,
 	}
 })

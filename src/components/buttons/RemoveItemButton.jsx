@@ -1,25 +1,24 @@
-import { useContextData } from "../../ComponentsHooks/useContextData" 
+import { memo } from "react";
 
 /**
- * Создает элемент кнопки, которая отрисовывается в компоненте FieldButtonContainer.
+ * Мемоизированный компонент создает элемент кнопки удаения задачи, которая отрисовывается в компоненте FieldButtonContainer.
  * 
- * Обрабатывает клик для удаления задачи.
- * 
- * Через контекст принимает clickAtRemoveButton для обработки клика.
- * 
- * @param {{id:number | string}} id индификатор задачи (обекта из массива taskState), использутся в обработчике clickAtRemoveButton
+ * @param {number | string} nextParam.id индификатор задачи (обекта из массива taskState), использутся в обработчике clickAtRemoveButton
+ * @param {function} nextParam.clickAtRemoveButton обработчик для удаления задачи
  * @returns
  */
-export const RemoveItemButton = ({ id }) => {
-	const { clickAtRemoveButton} = useContextData()
+export const RemoveItemButton = memo(
+		( { id, clickAtRemoveButton } ) => {
 
+		console.log( "/remove button render ...." )
 
-	return (
-		<button
-			onClick = {(e) => { clickAtRemoveButton(id)} }
-			className="button-container__item-button"
-		>
-			Удалить
-		</button>
+		return (
+			<button
+				onClick = { (e) => { clickAtRemoveButton( id ) } }
+				className = "button-container__item-button"
+			>
+				Удалить
+			</button>
 	)
-}
+	} 
+)

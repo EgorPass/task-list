@@ -1,20 +1,23 @@
-import { useContextData } from "../../ComponentsHooks/useContextData"
-
 /**
- * Создает элемент кнопки, которая отрисовывается в компоненте FieldButtonContainer.
+ * Компонент создает элемент кнопки закрытия описания задачи, которая отрисовывается в компоненте FieldButtonContainer.
  * 
- * Обрабатывает клик для закрытия описания поля задачи.
+ * Не мемоизируем, бессмысленно, зависит от параметров состояний textField, fieldState, состояний, которые содержат изменяемые разделы поля описания задачи.
+ *  
+ * @param {object} param0
+ * @param {number | string} param0.id 
+ * @param {function} param0.clickAtCloseButton 
  * 
- * Через контекст принимает clickAtCloseButton для обработки клика.
- * 
- * @param {{id:number | string}} id индификатор задачи (обекта из массива taskState), использутся в обработчике clickAtCloseButton 
+ * @param id индификатор задачи (обекта из массива taskState), использутся в обработчике clickAtCloseButton,
+ * @param clickAtCloseButton обработчик кликов для закрытия окна описания задачи
  * @returns 
  */
-export const CloseItemButton = ({ id }) => {
-	const {clickAtCloseButton} = useContextData()
+export const CloseItemButton = ( { id, clickAtCloseButton } ) => {
+	
+	console.log("/close button render ....")
+
 	return (
 		<button
-			onClick = {(e) => { clickAtCloseButton(id) }}
+			onClick = { (e) => { clickAtCloseButton( id ) } }
 			className = "button-container__item-button"
 		>
 			Закрыть

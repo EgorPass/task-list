@@ -1,42 +1,50 @@
-import { useGetStore } from "../../redux/reduxHooks/useGetStore"
-
 import { FileLoaderCancel } from "../buttons/FileLoaderCancel"
+import { FileName } from "../fileName/FileName";
 
-import { FileLoaderProgress } from "../fileLoaderProgress/FileLoaderProgress";
 
 /**
  * Компонент отрисовывает степень загрузки загружаемого файла
  * 
- * Компонент отрисовывается в случае если loaderId есть в loadingFiles
- * По loadingFiles[loaderId] заполняется ширина для уровня загрузки
- * 
- * Через конеткст принимает loadingFiles, clickAtCancelLoad
- *  
- * Родительский компонент FileConetnt
+ * Компонент отрисовывается в случае если fileId есть в uploadFile
+ * По uploadFile[fileId] заполняется ширина для уровня загрузки
  * 
  * @param {object} param0
- * @param {string | number} param.loaderId индификатор который присуждается при файлу при его создании
- * @param {string | number} param.id индификатор задачи (обекта из массива taskState), использутся для обработка clickAtCancelLoad
+ * @param {string } param0.name 
+ * @param {string | number} param0.fileId
+ * @param {string | number} param0.id 
+ * @param {object | null} param0.uploadFile
+ * @param {function} param0.clickAtCancelLoad 
+ * 
+ * @param name название файла в хранилище для clickAtRemoveFile
+ * @param fileId индификатор который присуждается при файлу при его создании
+ * @param id индификатор задачи (обекта из массива taskState), использутся для обработка clickAtCancelLoad
+ * @param uploadFile содержит информацию о файле для отгрузке (fileId и progress-уровень загрузки),
+ * @param clickAtCancelLoad обработчик для отмены загрузки файла к задаче компонента FileLoaderCancel 
  * @returns 
+ * 
  */
-export const FileLoader = ({ loaderId , id}) => {
+export const FileLoader =	({ fileId, id, name, progress, clickAtCancelLoad }) => {
 
-	const { loadingFiles } = useGetStore();
-	const state = (loaderId in loadingFiles)
-	
-	let progress = 0
-	
-	if (state) {
-		progress = loadingFiles[loaderId].progress
-	}
+	console.log("//file loader render ...")
 
-	if (state) return (
-		<div className={`file-container__file-loader`} data-loader={loaderId}>
+	return (
+		<>
+			<div className = "file-container__file-loader">
+				
+				<FileName name = { name } />
 
-			<FileLoaderProgress progress = {progress} />
-			<FileLoaderCancel id={id} loaderId={loaderId} />
+				<div className = "file-container__file-loader-cover"></div>
+				<div
+					style = { { width: `${progress}%` } }
+					className = "file-container__file-loader-progress"
+				></div>
+			</div>
 			
-		</div>
+			<FileLoaderCancel
+				id = { id }
+				fileId = { fileId }	
+				clickAtCancelLoad = { clickAtCancelLoad }
+			/>
+		</>
 	)
-	else return null;
 }

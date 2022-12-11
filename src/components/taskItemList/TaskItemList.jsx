@@ -1,49 +1,68 @@
+import { memo } from "react"
+
 import { Title } from "../title/Title";
 import { Checkbox } from "../checkbox/Checkbox";
-import { useContextData } from "../../ComponentsHooks/useContextData"
 import { FileAnchor } from "../fileAnchor/FileAnchor";
+import { TaskContainerLoader } from "../taskContainerLoader/TaskContainerLoader";
 
-import '../../styles/task-item.scss';
+import '../../styles/task-container.scss';
+import '../../styles/task-item.scss'
 
 /**
- * Компонент контейнер, для отрисовки чекбокса задачи и названия задачи в отдельной линии списка задач.
+ * Мемоизированный компонент контейнер, создает блок с классом "task-body__content-container" для размещения списка задач.
  * 
- * Принимает в пропсы объект массива tasks 
+ * Отрисовывает компоненты строки списка задачи: Checkbox, Title и FileAnchor.
  * 
- * Отрисовывает компоненты Checkbox, Title и FileAnchor.
+ * А так же отрисовывает TaskContainerLoader для ожидания загрузки
  * 
- * Через контекст принимает функцию setModeForTitle, которая создает модификотр для пропса className компонента Title.
+ * Через состояние tasks принимает масив с объектом задач tasks, и из этого масива строятся элементы списка задач с классом "task-container__task-item task-item".
  * 
- * Родительский компонент TaskContainer.
+ * Через контекст useTaskItemListContext принимает clickAtTitle и clickAtCheckboxTitle, которые передает в дочерение компоненты
  * 
- * @param {object} param0
- * @param {string | number} param.id индификатор задачи (обекта из массива taskState), использутся для передачи в дочерние компоненты для их обработчиков кликов,
- * @param {string} param.title название задачи, передается в Title,
- * @param {boolean} param.isComplite состояние готовности выполнения задачи, используется в функции setModeForTitle для создания модификатора пропса className компонента Title.
- * @param {string | number} param.deadline дата до которай нужно выплнить задачу, используется в функции setModeForTitle для создания модификатора пропса className компонента Title.
+ * Родительский компонент TaskBody.
+ * 
  * @returns 
  */
-export const TaskItemList = ({ id, title, isComplite, deadline, files }) => {
+export const TaskItemList =
+	memo(
+	({ tasks, loader, setModeForTitle, clickAtTitle, clickAtCheckboxTitle }) => {
 
-	const { setModeForTitle } = useContextData();
-	const classNameMod = setModeForTitle (deadline, isComplite)
-		
-	return (
-		<>
-			<Checkbox
-				id = {id}
-				isComplite={isComplite}
-				className = "task-item__checkbox"
-				/>
-			<Title
-				id={id}
-				title={title}
-				className={`task-item__title task-item__title_${classNameMod}`}
-				/>
+		console.log( "taskItemList render ..." )
 
-			{
-				files && <FileAnchor />
-			}
-		</>
-	)
-}
+		return (
+			<div className="task-body__content-container">
+				<ul className = "task-body__task-container task-container">
+					{
+						tasks.map(it => (
+							<li
+							key = { `${ it.id }` }
+							className="task-container__task-item task-item"
+							>
+								<Checkbox
+									id = { it.id }
+									isComplite = { it.isComplite }
+									className = "task-item__checkbox"
+									clickAtCheckbox = { clickAtCheckboxTitle }
+									/>
+								<Title
+									id ={ it.id }
+									title = { it.title }
+									clickAtTitle = { clickAtTitle }
+									className=  {`task-item__title task-item__title_${ setModeForTitle ( it.deadline, it.isComplite ) }`}
+								/>
+
+								{
+									it.files && <FileAnchor />
+								}
+							</li>
+						))
+					}
+				</ul>
+				<TaskContainerLoader
+					state = { loader }
+					content = { "Давайте создадим первую задачу" }
+				/>
+			</div>
+		)
+	}
+)

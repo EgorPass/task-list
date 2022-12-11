@@ -1,81 +1,87 @@
-import React, { useState, useEffect, useRef } from "react";
-import { MyContext} from "./ComponentsHooks/useContextData"
+import React, { useEffect } from "react";
+import {
+	TaskHeaderContext,
+	TaskItemListContext,
+	TaskItemFieldContext,
+	EditContext,
+} from "./ComponentsHooks/useContextData"
 
-import { useEdit } from "./ComponentsHooks/useEdit"
-import { useClicks } from "./ComponentsHooks/useClicks"
 import { useGetStore } from "./redux/reduxHooks/useGetStore";
-import { monitor } from "./ComponentsHooks/useFirebase"
-import { useFilesContent } from "./ComponentsHooks/useFilesContent"
+
+import { useRefference } from "./ref/useRefference.js"
+
+import { useFirebase } from "./ComponentsHooks/useFirebase"
 
 import { useTasksActions } from "./redux/reduxHooks/useBindActions";
 
+import { useTooltip } from "./ComponentsHooks/useTooltips"
+
 import { TaskBody } from "./components/taskBody/TaskBody"
-
 import { TooltipPortal } from "./components/tooltipPortal/TooltipPortal";
-
 import { Tooltip } from "./components/tooltip/Tooltip";
 
-
-import { useTooltip } from "./ComponentsHooks/useTooltips"
 
 function App() {
 	
 	console.log("render...")
 
-	const [cancelState, setCancelState] = useState(null);
-	const store = useGetStore()
-	const editMethods = useEdit();
-	const { getTasks } = useTasksActions()
-	const clicksMethods = useClicks(cancelState)
-	const filesMethods = useFilesContent(cancelState, setCancelState)
-	const tooltipRef = useRef(null)
-	const { onMouseOver, positionAt } = useTooltip();
+	const { tooltip } = useGetStore()
 
+	let {  tooltipRef } = useRefference();
+
+	const { monitor } = useFirebase();
+	const { getTasks } = useTasksActions()
+				
+	const { onMouseOver, positionAt } = useTooltip();
 
 	useEffect(() => {
 		monitor(getTasks)
 		
+	}, [])
+
+	useEffect(() => {
 		window.addEventListener("mouseover", onMouseOver)
+		
+		if (tooltipRef.current) {
+			positionAt(tooltipRef.current, tooltip)
+		}
 
 		return () => {
 			window.removeEventListener("mouseover", onMouseOver)
 		}
-	}, [])
-
-	useEffect(() => {
-		if (tooltipRef.current) {
 			
-			positionAt(tooltipRef.current, store.tooltip)
-		}
-			
-	}, [store.tooltip] )
-
+	}, [ tooltip ] )
 
 	return (
-
-		<MyContext value={
+		
+		<> 
+			<TaskHeaderContext>
+				<TaskItemListContext>
+					<TaskItemFieldContext>
+							<EditContext>
+								
+									<TaskBody	/>
+								
+							</EditContext>
+					</TaskItemFieldContext>
+				</TaskItemListContext>
+			</TaskHeaderContext>
+					
 			{
-				...store,
-				...editMethods,
-				...filesMethods,
-				...clicksMethods,
-			}}>
-			<TaskBody />
-			{
-				store.tooltip && (
-
+				tooltip && (
+					
 					<TooltipPortal>
-				 		<Tooltip
-							{...store.tooltip}
-				 			tooltipRef={tooltipRef}
-				 		/>
+						<Tooltip
+							{ ...tooltip }
+							tooltipRef = { tooltipRef }
+							/>
 				
 					</TooltipPortal>
 				
-				 )
+				)
 			}
-		</MyContext>
-  );	
+		</>
+  )	
 }
 
 export default App;

@@ -1,47 +1,42 @@
 @import "./template.scss";
-@import "./mixins.scss";
-@import "./varibels.scss";
 
 .task-header {
 
 	&__search-field {
+		width: 100%;
+		
 		input {
-			width: $searchFieldWidth;
+			width: 100%;
 			outline: none;
+			font: $searchFont;
+			text-shadow: $textShadowMain;
 			background: $searchFieldBackground;
-			font: $searchFielfFont;	
-
-			@include setBox($searchFieldMargin, $searchFieldPadding);
-
+			
 			@include setBorder($searchFieldBorder, $searchFieldBorderRadius, $searchFieldBoxShadow);
-
+			@include setBox($searchFieldMargin, $searchFieldPadding);
 		}
 	}
-
+	
 	&__create-button {
-		justify-self: start;
+		height: $createButtonSize;
+		width: $createButtonSize;
+		font: $createButtonFont;
+		background-color: $createButtonBackground;
 		
-		@include setFlex($createButtonFlexFlow, $createButtonJustify, $createButtonAlign);		
-	}
-		
-	&__item-button {
 		@extend %template-circle-button;
 		
-		height: $createButtonHeight;
-		width: $createButtonWidth;
-		font: $createButtonFont;
+		@include setBorder(	$createButtonBorder, 
+												$createButtonBorderRadius, 
+												$createButtonBoxShadow);
 	}
 
-		&__item-button:hover {
+		&__create-button:hover {
 			background: $createButtonHover;
 		}
 
-		&__item-button:active {
+		&__create-button:active {
 			top: 1px;
 			left: 1px;
 			box-shadow: $createButtonBoxShadowActive;
 		}
-
-
-
 }

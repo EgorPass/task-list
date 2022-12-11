@@ -1,3 +1,4 @@
+import { memo } from "react"
 import { SearchField } from "../searchField/SearchField";
 import { CreateButton } from "../buttons/CreateButton";
 
@@ -5,26 +6,35 @@ import '../../styles/task-header.scss';
 
 
 /**
- * Компонент отрисовывает Header списка задач.
+ * Мемоизированный компонент отрисовывает Header списка задач.
  * В компоненте содержиться поисковая строка и кнопка создания новой задачи.
  * 
- * Через контекст принимает changeSearch, search, createTask.
+ * Рисует компоненты SearchField и мемоизированный CreateButton.
  * 
- * createTask обрабатывает клик для создания новой задачи.
- * 
- * search и changeSearch обрабатывает запрос поисковой строки.
+ * @param {string} nextProp.search строка из состояния search для контролируемого компонента
+ * и changeSearch обрабатывает запрос поисковой строки.
+ * search состояние из redux
  * 
  * @returns 
  */
-export const TaskHeader = () => {
+export const TaskHeader = memo(
+	( { search, changeSearch, createTask } ) => {
 
-	return (
-		<div className = "task-body__task-header task-header">
+		console.log( "taskHeader render.... ")
 				
-			<SearchField />
-			<CreateButton />
+		return (
+			<div className = "task-body__task-header task-header">
+					
+				<SearchField
+					changeSearch = { changeSearch }
+					content = { search }
+				/>
 
-		</div>
+				<CreateButton
+					createTask = { createTask }
+				/>
 
-	)
-}
+			</div>
+		)
+	}
+)

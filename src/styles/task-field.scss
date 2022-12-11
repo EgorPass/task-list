@@ -1,90 +1,130 @@
 @import "./template.scss";
-@import "./varibels.scss";
-@import "./mixins.scss";
 
 .task-field {
 		&__text-height {
-				position: relative;
-				padding: 0px 0;
-				margin: 0px;
-				height: 100%;
-				@extend %template-wrap;
-				@extend %template-overflow;
-			}
-
-	&__descriptio-container {
-		grid-area: description;
-		position: relative;
+			position: relative;
+			@extend %template-wrap;			
+			@include setBox($textHeightMargin, $textHeightPadding);
+		}
 		
-		margin:  0;
-		padding: 10px 5px;
+		&__descriptio-container {
+			grid-area: description;
+			border-bottom: $descriptionContainerBorder;
+			border-top: $descriptionContainerBorder;			
+			max-height: $descriptionMaxHeight;
+			
+			@extend %template-overflow;
+	
+			@include setBox($descriptionContainerMargin, $descriptionContainerPadding);
 
-		max-height: 250px;
-		overflow-y: auto;
-
-		border-bottom: $descriptionContainerBorder;
-		border-top: $descriptionContainerBorder;
-
-		& .task-field__text-height {
+		& * {
 			@extend %template-font_description;
+
+			@media (max-width: 500px) {
+				font: $descriptionFontSmall;
+			}
 		}
 
+		@media (max-width: 500px) {
+			max-height: $descriptionMaxHeightSmall;
+		}
 	}
 
 	&__title-container {
 		grid-area: header;
-		position: relative;
+		max-height: $titleFieldMaxHeight;
+		@extend %template-overflow;
 
-		padding: 0;
-		margin: 0;
+		@include setBox($taskFieldTitleContanerMargin, $taskFieldTitleContanerPadding);
 
-		max-height: 90px;
-		overflow-y: auto;
-
-		padding: $taskFieldTitleContanerPadding;
-		position: relative;
-
-		& .task-field__text-height {
+		& * {
 			text-align: center;
 			@extend %template-title-font;
+
+			@media (max-width: 500px) {
+				font: $titleFontSmall;
+			}
+		}
+
+		.title-container__title {
+			&_deadmen {
+				color: $titleDeadmenColor;
+			}
+
+			&_complite {
+				color: $titleCompliteColor;
+			}
+			
+			&_un-complite {
+				color: $titleColor;
+			}
+		}
+
+		@media (max-width: 500px) {
+			max-height: $titleFieldMaxHeightSmall;
 		}
 	}
 	
 	&__checkbox-container {
-		grid-area: checkbox;
-		@include setFlex($checkboxContainerFlex, $checkboxContainerJustify, $checkboxContainerAlign)
-	}
 
+		user-select: none;
+
+		grid-area: checkbox;
+
+		@include setFlex($flexFlowRow, $checkboxContainerJustify, $checkboxContainerAlign);
+
+		@extend %template-font_description;
+
+		@media (max-width: 500px) {
+			font: $descriptionFontSmall;
+			margin: $checkboxContainerMarginSmall;
+		}
+	}
 
 	&__deadline-container {
-		height: 100%;
+		user-select: none;
+		
 		grid-area: deadline;
+		text-align: end;
 
-		@include setFlex($deadlineContainerFlex, $deadlineContainerJustify, $deadlineContainerAlign);
+		& * {
+			@extend %template-font_description;
 
+			@media (max-width: 500px) {
+				font: $descriptionFontSmall;
+			}
+		}
+
+		@media (max-width: 500px) {
+			padding: $deadlinContainerMarginSmall;
+		}
 	}
 
-	&__file-container {
-		
+	&__file-container {	
 		grid-area: file;
 		
-		margin: $fileContainerMargin;
-		
+		@include setBox($fileContainerMargin, $fileContainerPadding);
+
 		display: grid;
-		grid-template-columns: $fileContainerGridCol;		
+		grid-template-columns: $fileContainerGridCol ;
 		justify-content: $fileContainerGridJustify;
 	}
 	
 	&__button-container {
 		grid-area: buttonContainer;	
+
+		@include setBox($buttonContainerMargin, $buttonContainerPadding);
 		
 		@include setFlex(
-			$buttonContainerFlex,
+			$flexFlowRow,
 			$buttonContainerFlexJustify,
 			$buttonContainerFlexAlign,
 		);
 
-		padding: 5px;
+		@media (max-width: 400px) {
+			justify-content: center;
+		}
+
 	}
 
 }

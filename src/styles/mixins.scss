@@ -1,9 +1,9 @@
-@mixin setGrid($row, $col, $justify, $align) {
+@mixin setGrid($row, $col, $justifyIt, $alignIt) {
 	display: grid;
 	grid-template-rows: $row;
 	grid-template-columns: $col;
-	align-items: $align;
-	justify-items: $justify;
+	justify-items: $justifyIt;
+	align-items: $alignIt;
 }
 
 @mixin setFlex($flow, $justify,

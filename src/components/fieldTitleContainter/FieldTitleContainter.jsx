@@ -1,46 +1,36 @@
-import { useContextData } from "../../ComponentsHooks/useContextData"
+import { memo } from "react"
 import { EditableTextField } from "../editableTextField/EditableTextField";
-
 import "../../styles/title-container.scss"
 
 /**
- * Компонент контейнер, для отрисовки названия задачи в поле описания задачи.
- * 
- * Принимает в пропсы объект массива tasks  
- * 
+ * Мемоизированный компонент контейнер, для отрисовки названия задачи в поле описания задачи.
+ *  
  * Отрисовывает компонент EditableTextField и поле подложку для него.
  *  
- * Через контекст принимает функцию setModeForTitle, которая создает модификотр для пропса className компонента EditableTextField.
+ * Через пропс принимает className для компонента EditableTextField с модификаторм для заголовка.
  * 
- * Родительский компонент TaskItemField.
- * 
- * @param {object} param0
- * @param {string} param.title название задачи, передается в Title,
- * @param {boolean} param.isComplite состояние готовности выполнения задачи, используется в функции setModeForTitle для создания модификатора пропса className компонента Title.
- * @param {string | number} param.deadline дата до которай нужно выплнить задачу, используется в функции setModeForTitle для создания модификатора пропса className компонента Title.
- * @param {object | null} param.edit объект который содержит информацию для режима редактирования
+ * @param {string} nextProps.content название задачи, передается в EditableTextField,
+ * @param {boolean} nextProps.className класс стиля с установленным модификатором для EditableTextField.
+ * @param {object | null} nextProps.onchange обработчик изменения строкового состояния changeTitle заголовка для передачи EditableTextField
  * @returns 
  */
-export const FieldTitleContainer = ({ title, isComplite, deadline }) => {
+export const FieldTitleContainer =	memo(
+	( { className, content, onchange } ) => {
 
-	const { setModeForTitle } = useContextData();
-	const classNameMod = setModeForTitle (deadline, isComplite)
-
-		return (
-			<div className="task-field__title-container title-container">
-				<div className = "task-field__text-height">	
-					{title}
-					&nbsp;
-					<EditableTextField
-						field="title"
-						content = {title}
-						className={
-							`title-container__title title-container__title_${classNameMod}`
-						}
-					/>
-			
-				
-				</div>
-		</div>
-	)
-}
+		console.log("title field render...")
+	
+			return (
+				<div className = "task-field__title-container title-container">
+					<div className = "task-field__text-height">	
+						{ content }
+						&nbsp;
+						<EditableTextField
+							onchange = { onchange }
+							content = { content }
+							className = { className }
+						/>
+					</div>
+			</div>
+		)
+	} 
+)

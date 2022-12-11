@@ -1,11 +1,14 @@
-@import "./varibels.scss";
 @import "./mixins.scss";
-
+@import "./var/var-font.scss";
+@import "./var/var-background.scss";
+@import "./var/var-border.scss";
+@import "./var/var-box.scss";
+@import "./var/var-Grid-Flex.scss";
+@import "./var/var-size.scss";
 
 %template-wrap {
-	hyphens: auto;
 	white-space: pre-wrap;
-	// word-break: break-all;
+	overflow-wrap: break-word;
 }
 
 %template-overflow {
@@ -15,17 +18,24 @@
 }
 
 %template-title-font {
-	font: $templateTitleFontBig;
-	color: $templateTitleColor;
-	text-shadow: $templateTitleTextShadow;
+	font: $titleFont;
+	text-shadow: $textShadowContr;
 }
 
-%template-title_small {
-	font: $templateTitleFontSmall;
+%template-description {
+	@include setBox( $descriptionMargin, $descriptionPadding);
+
+	max-height:$descriptionMaxHeight;
 }
+
+%template-font_description {
+	font: $descriptionFont;
+	text-shadow: $textShadowMain;
+}
+
 
 %template-checkbox {	
-	@include setFlex($templateCheckBoxFlexFlow, $templateCheckBoxJustify, $templateCheckBoxAlign);
+	@include setFlex($flexFlowRow, center, center);
 	
 	cursor: default;
 	user-select: none;
@@ -41,13 +51,12 @@
 
 %template-checkbox__checkmark {
 	position: relative;
-	width: $checkboxWidth;
-	height: $checkboxHeight;
+	width: $checkboxSize;
+	height: $checkboxSize;
 	background-color: $checkboxBackground;
 
 	@include setBorder($templateCheckboxCheckmarkBorder, $templateCheckboxCheckmarkBorderRadius, $templateCheckboxCheckmarkBoxShadow)
 }
-
 
 %template-checkbox__checkmark_active {
 	content: "";
@@ -62,33 +71,12 @@
 	opacity: 0;
 }
 
-%template-checkbox__description {
-	padding: 0 0 0 10px;
-	flex-basis: 200px;
-
-}
-
-%template-description {
-	@include setBox( $descriptionMargin, $descriptionPadding);
-
-	max-height:$descriptionMaxHeight;
-}
-
-%template-font_description {
-	font: $templateDescriptionFont;
-	text-shadow: $templateDescriptionTextShadow;
-}
-
-%template-circle-button {	
-	@include setFlex($templateCircleButtonFlexFlow, $templateCircleButtonJustify, $templateCircleButtonAlign);
-	
-	@include setBorder($templateCircleButtonBorder, $templateCircleButtonBorderRadius, $templateCircleButtonBoxShadow);
-
-	padding: 0;
-
+%template-circle-button {
+	user-select: none;
 	position: relative;
-	outline: none;
-	text-align: center;
 	cursor: default;
-	background: $circleButtonBackground;
+	margin: $circleButtonMargin;
+	padding: $circleButtonPadding;
+	
+	@include setFlex($flexFlowRow, center, center);
 }

@@ -1,15 +1,20 @@
-@import "./mixins.scss";
-@import "./varibels.scss";
-
+@import "./template.scss";
 
 .task-container {
 
-	&__task-item {
+	&__task-item {	
 		
-		@include setGrid($taskItemGridRow, $taskItemGridCol, $taskItemGridJustify, $taskItemGridAlign);
+		cursor: default;
 
-		@include setBox($taskItemMargin, $taskItemPadding);
+		user-select: none;
+		tap-highlight-color: transparent;
+		-webkit-tap-highlight-color: transparent;
+		-moz-tap-highlight-color: transparent;
+		-o-tap-highlight-color: transparent;
 
 		border-bottom: $taskItemBorderBottom;
+	
+		@include setBox($taskItemMargin, $taskItemPadding);
+		@include setGrid($taskItemGridRow, $taskItemGridCol, $taskItemGridJustify, $taskItemGridAlign);
 	}
 }

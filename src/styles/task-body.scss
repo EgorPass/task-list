@@ -1,6 +1,4 @@
 @import "./template.scss";
-@import "./varibels.scss";
-@import "./mixins.scss";
 
 #task-body__task-tooltip {
 	
@@ -18,47 +16,53 @@
 		font: italic normal 14px/1 Time serif;
 		background-color: #eeee;
 	}
-
 }
-
 
 .task-body {
 	width: $taskBody;
-	margin: 20px auto;
-	user-select: none;
+	min-width: $taskMinWidth;
+	margin:$taskBodyMargin;
 
 	@media (max-width: 500px) {
 		width: $taskBodySmall;
-		margin: 0;
+		margin: $taskBodyMarginSmall;
+	}
+
+	&__content-container-loader {
+		@include setFlex($flexFlowRow, center, center)
 	}
 
 	&__task-header {
 
 		@include setGrid($taskHeaderGridRow, $taskHeaderGridCol, $taskHeaderJustify, $taskHeaderAlign);
 
-		@include setBox($taskHeaderMargin, $taskHeaderPadding);
+		@include setBorder($taskHeaderBorder, $taskHeaderBorderRadius, $taskBodyShadow);
 
-		@include setBorder($taskHeaderBorder, $taskHeaderBorderRadius, $taskHeaderBoxShadow);
+		@include setBox($taskContentMargin, $taskHeaderPadding);
 
 		background: $backgroundBody;
+
+		@media (max-width: 500px) {
+			padding: $taskHeaderPaddingSmall;
+		}
 	}
 
 	&__content-container {
-		box-sizing: border-box;
-		min-height: $contentContainerMinHeight;
-
-		@include setBox($contentContainerMargin, $contentContainerPadding);
-
-		@include setBorder($contentContainerBorder, $contentContainerBorderRadius, $contentContainerBoxShadow);
-
+		
+		@include setBorder($contentContainerBorder, $contentContainerBorderRadius, $taskBodyShadow);
+		
+		@include setBox($taskContentMargin, $contentContainerPadding);
+		
 		background: $backgroundBody;
+		
+		@media (max-width: 500px) {
+			padding: $contentContainerPaddingSmall;
+		}
 	}
 
 	&__task-container {
 
 		@include setBox($taskContainerMargin, $taskContainerPadding );
-
-		min-height: $taskContainerMinHeight;
 
 		list-style-type: none;
 		background-color: transparent;
@@ -72,32 +76,39 @@
 		width: 100%;
 		height: 100%;
 		background: $taskCoverBackground;
-		z-index: 10;
+		z-index: 1;
 
-		@include setFlex($taskCoverFlexFlow, $taskCoverJustify, $taskCoverAlign)
+		@include setFlex($flexFlowRow, center, center)
 	}
 
 	&__task-field {
 		box-sizing: border-box;
-		padding: $taskFieldPadding;
 		width: $taskFieldMaxWidht;
-
-		@media (max-width: $taskFieldMaxWidht) {
-			min-width: 300px;
-			max-width: $taskFieldMaxWidht;
-			margin: 5px;
-		}
-
-		@include setGrid($taskFieldGridRow, $taskFieldGridCol, $taskFieldJustify, $taskFieldAlign);
-
+		min-width:$taskMinWidth;
+		
 		@include setBorder($taskFieldBorder, $taskFieldBorderRadius, $taskFieldBoxShadow);
 
-		grid-template-areas: "header header"
-		"description description"
-		"file file"
-		"checkbox deadline"
-		"buttonContainer buttonContainer";
+		@include setBox($taskFieldMarging, $taskFieldPadding);
 
-		background: $backgroungField;
+	 	@include setGrid($taskFieldGridRow, $taskFieldGridCol, $taskFieldJustify, $taskFieldAlign);
+	
+			grid-template-areas:	"header header"
+														"description description"
+														"file file"
+														"checkbox deadline"
+														"buttonContainer buttonContainer";
+	
+			background: $backgroungField;	
+
+		@media (max-width: $taskFieldMaxWidht) {
+			padding: $taskFieldPaddingSmall;
+			grid-template-rows: $taskFieldGridRowSmall;
+			grid-template-areas: " header header"
+														"description description"
+														"file file"
+														"checkbox checkbox"
+														'deadline deadline'
+														"buttonContainer buttonContainer";		
+		}
 	}
 }

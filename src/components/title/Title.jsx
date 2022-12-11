@@ -1,33 +1,40 @@
-import { useContextData } from "../../ComponentsHooks/useContextData"
-
+import { memo } from "react"
 
 /**
- * Создает элемент заголовка для названия задиня.
+ * Компонент создает элемент заголовка для названия задиня в компоненте TaskItemList.
  * 
- * Родительские компонент TaskItemList.
+ * Не мемоизируем, зависит от функции clickAtTitle, которая зависит от состояния task.
  * 
  * Обрабатывает клик для открытия описания поля задачи.
  * 
- * Через контекст принимает clickAtTitle для обработки клика.
- * 
  * @param {object} param0
- * @param {number | string} param.id индификатор задачи (обекта из массива taskState), использутся в обработчике clickAtTitle,
- * @param {string} param.title название задачи,
- * @param {string} param.className принимает динамически изменяемое название класса, из родительского компонента (модификатор класса зависит от состояния выоплнения задания, даты завершения задания и текущей даты)
+ * @param {number | string} param0.id 
+ * @param {string} param0.title 
+ * @param {function} param0.clickAtTitle
+ * @param {string} param0.className 
+ * 
+ * @param id индификатор задачи (обекта из массива taskState), использутся в обработчике clickAtTitle,
+ * @param title название задачи,
+ * @param clickAtTitle обработчик для открытия задачи,
+ * @param className принимает динамически изменяемое название класса, из родительского компонента (модификатор класса зависит от состояния выоплнения задания, даты завершения задания и текущей даты)
  * @returns 
  */
-export const Title = ({ id, title, className }) => {
-	
-	const { clickAtTitle } = useContextData()
+export const Title = ( { id, title, className, clickAtTitle } ) => {
+
+	console.log( "title in List render..." )
 
 	return (
 		<span
-			className={className}
-			onClick={() => clickAtTitle(id)}
-			data-task-tooltip={`По клику откроется описание задачи: \n${title}`}
+			className = { className }
+			onClick = { (e) => {
+				clickAtTitle( id )
+			} }
+			data-task-tooltip = {
+				`По клику откроется описание задачи: \n${ title }`
+			}
 		>
-			{title}
+			{ title }
 		</span>
 	)
-		
-}
+
+} 

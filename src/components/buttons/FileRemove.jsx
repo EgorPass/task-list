@@ -1,38 +1,35 @@
-import { useContextData } from "../../ComponentsHooks/useContextData"
-import { useGetStore } from "../../redux/reduxHooks/useGetStore";
+import { memo } from "react";
 
 /**
- * Компонент рисует кнопу удаления файла в компоненте FileItem
- * 
- * Для удаления используется обработчик клика clickAtRemoveFile, который передается через контектс
- * 
- * @param {objects} param0
- * @param {string | number } param.id индификатор задачи для обработчика clickAtRemoveFile
- * @param {string | number } param.fileId индификатор файла в хранилище для clickAtRemoveFile
- * @param {string } param.name название файла в хранилище для clickAtRemoveFile
+ * Мемоизированный компонент рисует кнопу удаления файла в FileContent
+ *  
+ * @param {string | number } nextProp.id индификатор задачи для обработчика clickAtRemoveFile
+ * @param {string | number } nextProp.fileId индификатор файла в хранилище для clickAtRemoveFile
+ * @param {string } nextProp.name название файла в списке и хранилище для clickAtRemoveFile
+ * @param {function} nextProp.clickAtRemoveFile обработчик для удаления файла из задачи
  *  
  * @returns 
  */
-export const FileRemove = ({ id, fileId, name }) => {
+export const FileRemove = memo(
+	( { id, fileId, name, clickAtRemoveFile } ) => {
 
-	const { clickAtRemoveFile  } = useContextData();
-	const { loadingFiles } = useGetStore();
+		console.log("///file remove render ...")
 
-	return (
-		<span
-			key={`span${id}`}
-			className={
-					`file-container__file-remove_${(
-									fileId in loadingFiles ? "hidden": "visible"
-				)}`}
-			onClick={
-				(e) => {
-					clickAtRemoveFile(id, fileId, name)
+		return (
+			<div
+				key = { `span${ id }` }
+				className = {
+					`file-container__file-remove`
 				}
-			}
-			data-task-tooltip ={`Удалить ${name}`}
-		>
-			X
-		</span>
-	)
-}
+				onClick = {
+					(e) => {
+						clickAtRemoveFile( id, fileId, name )
+					}
+				}
+				data-task-tooltip = {`Удалить ${ name }` }
+			>
+				X
+			</div>
+		)
+	}
+)

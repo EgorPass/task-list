@@ -1,56 +1,12 @@
 @import "./template.scss";
-@import "./varibels.scss";
-@import "./mixins.scss";
 
 .checkbox-container {
-
-&__checkbox {
-		@extend %template-checkbox;
-
-		& input {
-			@extend %template-checkbox__input;
-		}
-
-		& input:checked~div {
-			background-color: #5df71571;
-		}
-
-		& input:checked~div:after {
-			opacity: 1;
-		}
-
-		&:hover input:checked~div {
-			background-color: #f7ca1577;
-		}
-
-		& div {
-			@extend %template-checkbox__checkmark;
-
-			@media (max-width: 500px) {
-				height: $checkboxHeightSmall;
-				width: $checkboxWidthSmall;
-			}
-		}
-
-		& div:after {
-			@extend %template-checkbox__checkmark_active;
-
-			@media (max-width: 500px) {
-				left: 6px;
-				top: 2px;
-				width: 4px;
-				height: 8px;
-			}
-		}
-	}
-
+	// В компоненте для чек бокса применен класс task-item__checkbox, что бы избавиться от повторения кода
+	
 	&__check-description {
-		@extend %template-checkbox__description;
-		@extend %template-font_description;
-
+		@include setBox($checkboxDescriptionMargin, $checkboxDescriptionPadding);
 		@media (max-width: 500px) {
-			font: $templateDescriptionFontSmall;
-			padding-left: $checkboxDescriptionPadding;
+			margin: $checkboxDescriptionMarginSmall;
 		}
 	}
 

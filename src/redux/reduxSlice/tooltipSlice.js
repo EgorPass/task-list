@@ -5,17 +5,15 @@ export const { actions: tooltipActions, reducer: tooltip } = createSlice({
 	initialState: null,
 	reducers: {
 		setTooltip: {
-			prepare: (tooltip, left, top, right, bottom, width, height) => {
+			prepare: ( tooltip, left, top, right, bottom, width, height ) => {
 				return {
 					payload: {
 						tooltip, left, top, right, bottom, width, height,
 					}
 				}
 			},
-			reducer: (state, { payload }) => {
-				return payload
-			}
+			reducer: ( state, { payload } ) =>  payload
 		},
-		removeTooltip(state) { return null },
+		removeTooltip( state ) { return null },
 	}
 })

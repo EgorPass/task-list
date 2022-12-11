@@ -1,0 +1,57 @@
+/////////////// Flex /////////////
+
+$flexFlowRow: row nowrap;
+$flexFlowCol: column nowrap;
+
+// field-checkbox-container // 
+
+$checkboxContainerFlex: row nowrap;
+$checkboxContainerJustify: start;
+$checkboxContainerAlign: center;
+
+
+// button-container //
+$buttonContainerFlex: row nowrap;
+$buttonContainerFlexJustify: end;
+$buttonContainerFlexAlign: center;
+
+
+//////////////////  grid ///////////////
+
+// header //
+
+$taskHeaderGridRow: 50px;
+$taskHeaderGridCol: 85% 15%;
+$taskHeaderJustify: end;
+$taskHeaderAlign: center;
+
+// task-item //
+
+$taskItemGridRow: minmax(50px, auto);
+$taskItemGridCol: 10% 80% 10%;
+$taskItemGridJustify: center;
+$taskItemGridAlign: center;
+
+// task-field //
+
+$taskFieldGridRow: auto auto auto 60px 40px;
+$taskFieldGridCol: 35% 65%;
+$taskFieldJustify: stretch;
+$taskFieldAlign: center;
+
+$taskFieldGridRowSmall: auto auto auto auto auto 50px;
+
+// file-container //
+
+$fileContainerGridRow: auto;
+$fileContainerGridCol: 94% 6%;
+$fileContainerGridJustify: start;
+$fileContainerGridAlign: auto;
+
+// file-item //
+
+$fileItemGridRow: auto;
+$fileItemGridCol: 93% 7%;
+$fileItemGridJustify: stretch;
+$fileItemGridAlign: center;
+
