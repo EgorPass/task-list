@@ -13,7 +13,7 @@ import { memo } from "react";
 export const FileRemove = memo(
 	( { id, fileId, name, clickAtRemoveFile } ) => {
 
-		console.log("///file remove render ...")
+		// console.log("///file remove render ...")
 
 		return (
 			<div

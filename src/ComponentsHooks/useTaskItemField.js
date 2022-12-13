@@ -2,13 +2,13 @@ import {  useCallback } from "react";
 
 import { useFirebase } from "./useFirebase"
 import {
-				useTasksActions,
 				useUploadFileActions,
 				useTextFieldActions,
 				useFieldStateActions,
 				useTaskFileActions
 										} from "../redux/reduxHooks/useBindActions" 
 import { useGetStore} from "../redux/reduxHooks/useGetStore"
+import { unstable_renderSubtreeIntoContainer } from "react-dom";
 
 /**
  * Хук для обработки изменений описания поля задачи (кнопики закрыть или удалить, чекбокс, изменение текстовых полей)
@@ -21,7 +21,6 @@ export function useTaskItemField( uploadTaskRef ) {
 	const { setOpenField, setNewField, setIsCompliteField } = useFieldStateActions()
 	const { resetTaskFile } = useTaskFileActions();
 
-	const { removeTask } = useTasksActions();
 	const { setUploadFile, deleteUploadFile } = useUploadFileActions()
 	const { textField, taskFile, fieldState, uploadFile, } = useGetStore()
 	const { deleteFileFromStorage, setFieldAtDatabase, uploadFileToStorage, downlaodFileFromStorage } = useFirebase()
@@ -53,14 +52,21 @@ export function useTaskItemField( uploadTaskRef ) {
 	const clickAtCloseButton = useCallback(
 		( id ) => {
 
-			setFieldAtDatabase( `/${ id }`, "title", textField.title )
-			setFieldAtDatabase( `/${ id }`, "description", textField.description )
-			setFieldAtDatabase( `/${ id }`, "deadline", textField.deadline )
-			setFieldAtDatabase( `/${ id }`, "isComplite", fieldState.isComplite )
+			if ( textField.title.length < 5 ) return;
+
+			for ( let prop in textField ) {
+				
+				console.log( prop )
+				setFieldAtDatabase( `/${ textField.id }`,  prop , textField[ prop ] )
+			}
+			
+				setFieldAtDatabase( `/${ id }`, "isComplite", fieldState.isComplite )
+
 
 			setOpenField( false )
 			resetTextField()
 			resetTaskFile()
+
 			if ( fieldState.newField ) {
 				setNewField( false )
 			}
@@ -91,7 +97,6 @@ export function useTaskItemField( uploadTaskRef ) {
 			}				
 			setOpenField( false )
 			resetTaskFile()
-			removeTask( id )
 			setFieldAtDatabase( "/", id, null )
 
 				
@@ -108,8 +113,6 @@ export function useTaskItemField( uploadTaskRef ) {
 						deleteFileFromStorage( `${ id }/${ name }/${ value }`, value );
 
 				}
-			
-
 		}
 	, [ taskFile ] )
 	

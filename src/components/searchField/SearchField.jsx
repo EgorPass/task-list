@@ -16,7 +16,7 @@
  */
 export const SearchField = ( { changeSearch, content }  ) => {
 
-	console.log("/searchFiled render...")
+	// console.log("/searchFiled render...")
 
 	return (
 		<div className = "task-header__search-field">

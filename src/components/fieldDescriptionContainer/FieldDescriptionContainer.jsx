@@ -12,7 +12,7 @@ import "../../styles/description-container.scss"
 export const FieldDescriptionContainer = memo(
 	( { content, onchange } ) => {
 
-			console.log( "description field render..." )
+			// console.log( "description field render..." )
 
 			return (
 				<div className = "task-field__descriptio-container description-container">

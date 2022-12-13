@@ -12,7 +12,7 @@ export const FileAddButton =
 	memo(
 	( { id, clickAtAddFile } ) => {
 		
-		console.log( "//file add button render ...", id )
+		// console.log( "//file add button render ...", id )
 
 		return (
 			<div className = "file-container__file-add-position">

@@ -27,7 +27,7 @@ export const TaskItemList =
 	memo(
 	({ tasks, loader, setModeForTitle, clickAtTitle, clickAtCheckboxTitle }) => {
 
-		console.log( "taskItemList render ..." )
+		// console.log( "taskItemList render ..." )
 
 		return (
 			<div className="task-body__content-container">
@@ -59,6 +59,7 @@ export const TaskItemList =
 					}
 				</ul>
 				<TaskContainerLoader
+					
 					state = { loader }
 					content = { "Давайте создадим первую задачу" }
 				/>

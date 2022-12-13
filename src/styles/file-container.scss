@@ -19,6 +19,7 @@
 	}
 
 	&__file-name {
+		justify-self: start;
 		font: $fileNameFont;
 		text-shadow: $fileNameTextShadow;
 		color: $fileNameColor;

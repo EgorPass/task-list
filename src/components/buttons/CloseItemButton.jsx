@@ -13,7 +13,7 @@
  */
 export const CloseItemButton = ( { id, clickAtCloseButton } ) => {
 	
-	console.log("/close button render ....")
+	// console.log("/close button render ....")
 
 	return (
 		<button

@@ -13,7 +13,7 @@ import { useRef, memo } from "react"
  */
 export const TooltipPortal = ( { children } ) => {
 
-	console.log("tooltip portal render....")
+	// console.log("tooltip portal render....")
 	
 	const taskTooltip = useRef( document.getElementById( "task-body__task-tooltip" ) )
 	

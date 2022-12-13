@@ -15,7 +15,7 @@ import { memo } from "react";
 export const FileName = memo(
 	( { id = 0, fileId = 0, name = "", clickAtFile = () => { } }) => {
 
-		console.log("///file name render ....")
+		// console.log("///file name render ....")
 
 		return (
 			<div

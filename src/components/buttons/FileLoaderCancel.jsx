@@ -16,7 +16,7 @@
  */
 export const FileLoaderCancel =	( { id, fileId, clickAtCancelLoad } ) => {
 
-	console.log( "///file cancel render ..." )
+	// console.log( "///file cancel render ..." )
 
 	return (
 		<div

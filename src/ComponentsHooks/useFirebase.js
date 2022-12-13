@@ -1,9 +1,8 @@
 import { useCallback } from "react"
-import { getDatabase, onValue, ref as databasRef, update, get, child, } from "firebase/database"
+import { getDatabase, onValue, ref as databasRef, update, get, set, child, } from "firebase/database"
 import { deleteObject, getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from "firebase/storage"
 import { useLoaderActions } from "../redux/reduxHooks/useBindActions"
 
-import { useGetStore } from "../redux/reduxHooks/useGetStore"
 
 /**
  * 
@@ -11,8 +10,7 @@ import { useGetStore } from "../redux/reduxHooks/useGetStore"
  */
 export function useFirebase() {
 	
-		const { setLoader } = useLoaderActions()
-	const { tasks } = useGetStore();
+	const { setLoader } = useLoaderActions()
 
 	/**
 	 * Обновляет содержимое realtimeDatabae, из которого формируется список задач.
@@ -31,7 +29,7 @@ export function useFirebase() {
 			const db = databasRef( getDatabase(), path )
 			return await update( db, { [ field ]: prop } )
 		}
-	, [])
+	, [ ] )
 
 
 	/**
@@ -40,10 +38,11 @@ export function useFirebase() {
 	 * @param {string} path путь внутри realtimeDatabase,
 	 * @returns {Promis<object | string>} может вернуть объект или строку
 	 */
-	const getFilesFromDatabase = useCallback( async ( path ) => {
-		const map = await get( child( databasRef( getDatabase() ), path) )
-		return await map.val();
-	}, [])
+	const getFilesFromDatabase = useCallback(
+		async ( path ) => {
+			const map = await get( child( databasRef( getDatabase() ), path) )
+			return await map.val();
+	}, [ ] )
 
 
 	/**
@@ -66,7 +65,7 @@ export function useFirebase() {
 					console.log( "что то пошло не так, файл: ", file, " - не удален" )
 				} )
 		}
-	, [])
+	, [ ] )
 
 
 	/**
@@ -85,7 +84,7 @@ export function useFirebase() {
 					
 			return uploadTask
 		}
-	, [])
+	, [ ] )
 
 	/**
 	 * сохранение файла прикрепленного к задаче
@@ -101,12 +100,10 @@ export function useFirebase() {
 			const anch = document.createElement( 'a' );
 			anch.setAttribute( "download", `${ name }` )
 			anch.setAttribute( "target", `_blank` )
-
 			anch.href = url;
-		
 			anch.click();
 		}
-	, [])
+	, [ ] )
 
 
 	/**
@@ -115,30 +112,38 @@ export function useFirebase() {
 	 * 
 	 * принимает как callback сеттер для списка объектов задач
 	 * 
+	 * Так же устанавливает состояние loader в зависимости от полученных данных:
+	 * 
+	 * есть список задач - complite;
+	 * если пусто - empty
+	 * 
+	 * в начале ставит в "loading", для выводк React-loader-spiner во время ожидания загрузки
+	 * 
 	 * @param {setTaskState} callback 
 	 */
 	const monitor = useCallback(
 		async ( callback ) => {
+			
+			setLoader( "loading" )
+			
+			const db = databasRef( getDatabase(), '/' );
+			
+			onValue( db, async snapshot => {
+				let arr = []
+				let loader = "empty";
+				const dataFromSnapshot = snapshot.val()
 
-			// setLoader( "loading" )
-			const db = databasRef( getDatabase() );
-
-			onValue( db, snapshot => {
-				if ( snapshot.exists() ) {
-
-					console.log(snapshot)
-					const arr = Object.values( snapshot.val() )
-
-					console.log(arr)
-						if( !arr.length ) setLoader( "" )
-					
-					callback( arr );
-					setLoader( "complite" )
-				}
+					if ( dataFromSnapshot ) {
+						arr = Object.values(dataFromSnapshot)
+						loader = "complite"
+					}
+				
+				setLoader(loader)
+				callback(arr);
 			})
 
 		}
-	, [])
+	, [ ] )
 
 	return {
 		monitor,

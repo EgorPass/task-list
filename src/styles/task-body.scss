@@ -29,7 +29,24 @@
 	}
 
 	&__content-container-loader {
-		@include setFlex($flexFlowRow, center, center)
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+
+		@include setFlex($flexFlowRow, center, center);
+
+		& .task-body__content-container-empty {
+			text-align: center;
+			@include setBox(0px, 0px);
+			@extend %template-loader-font;
+
+			@media (max-width: 350px) {
+				font-size: 18px;
+			}
+		}
+
 	}
 
 	&__task-header {
@@ -48,14 +65,17 @@
 	}
 
 	&__content-container {
-		
+		position: relative;
+		min-height: 30px;
+		background: $backgroundBody;
+
 		@include setBorder($contentContainerBorder, $contentContainerBorderRadius, $taskBodyShadow);
 		
 		@include setBox($taskContentMargin, $contentContainerPadding);
 		
-		background: $backgroundBody;
 		
 		@media (max-width: 500px) {
+			min-height: 40px;
 			padding: $contentContainerPaddingSmall;
 		}
 	}

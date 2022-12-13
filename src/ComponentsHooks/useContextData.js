@@ -45,7 +45,7 @@ export const TaskItemFieldContext = ( { value, children } ) => {
 	let { uploadTaskRef } = useRefference();
 	const taskItemFieldMethods = useTaskItemField( uploadTaskRef );
 
-		console.log("uploadTaskRef from TaskFieldContext: ", uploadTaskRef)
+		// console.log("uploadTaskRef from TaskFieldContext: ", uploadTaskRef)
 
 	return (
 		<ContextForTaskItemField.Provider value={{ ...taskItemFieldMethods, uploadTaskRef } } >

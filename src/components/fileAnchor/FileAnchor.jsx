@@ -8,7 +8,7 @@ import { memo } from "react"
 export const FileAnchor =	memo(
 	() => {
 
-		console.log("/FileAnchor render...")
+		// console.log("/FileAnchor render...")
 
 		return (
 			<span

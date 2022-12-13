@@ -18,7 +18,7 @@
  */
 export const Tooltip = ({ tooltip, tooltipRef }) => {
 
-	console.log("tooltip render...")
+	// console.log("tooltip render...")
 
 	return (
 		<span

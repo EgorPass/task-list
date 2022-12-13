@@ -17,6 +17,12 @@
 	overflow-x: hidden;
 }
 
+%template-loader-font {
+	font: $titleFontSmall;
+	text-shadow: $textShadowContr;
+	color: $titleCompliteColor;
+}
+
 %template-title-font {
 	font: $titleFont;
 	text-shadow: $textShadowContr;

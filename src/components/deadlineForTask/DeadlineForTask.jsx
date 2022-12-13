@@ -12,7 +12,7 @@
  */
 export const DeadlineForTask = ({ content, onchange }) => {
 	
-	console.log("/deadline for task render ...")
+	// console.log("/deadline for task render ...")
 	
 	return (
 		<input

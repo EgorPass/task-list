@@ -9,7 +9,7 @@ import { memo } from "react"
  */
 export const CreateButton = memo(	( { createTask } ) => {
 
-	console.log( "create button render ..." )
+	// console.log( "create button render ..." )
 	
 	return (
 		<div className = "task-header__create-container">

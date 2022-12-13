@@ -19,7 +19,7 @@
  */
 export const EditableTextField = ( { className, content, onchange, } ) => {
 
-	console.log( "/editableTextField render..." )
+	// console.log( "/editableTextField render..." )
 
 	return (		
 		<textarea

@@ -18,7 +18,7 @@ import "../../styles/button-container.scss"
 export const FieldButtonContainer =	memo(
 	( { id, clickAtRemoveButton, clickAtCloseButton } ) => {
 
-		console.log( "button field render...", "  id: ", id)
+		// console.log( "button field render...", "  id: ", id)
 		
 		return (
 			<div className = "task-field__button-container button-container">

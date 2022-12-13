@@ -25,7 +25,7 @@ import { FileName } from "../fileName/FileName";
  */
 export const FileLoader =	({ fileId, id, name, progress, clickAtCancelLoad }) => {
 
-	console.log("//file loader render ...")
+	// console.log("//file loader render ...")
 
 	return (
 		<>

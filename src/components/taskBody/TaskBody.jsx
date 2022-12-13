@@ -21,7 +21,7 @@ import "../../styles/task-body.scss"
  */
 export const TaskBody = () => {
 		
-	console.log("task body render ...")
+	// console.log("task body render ...")
 
 	const { search, loader, tasks, fieldState, textField, taskFile, uploadFile } = useGetStore()
 	

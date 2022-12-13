@@ -20,7 +20,7 @@ import '../../styles/task-header.scss';
 export const TaskHeader = memo(
 	( { search, changeSearch, createTask } ) => {
 
-		console.log( "taskHeader render.... ")
+		// console.log( "taskHeader render.... ")
 				
 		return (
 			<div className = "task-body__task-header task-header">

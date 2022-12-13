@@ -8,23 +8,25 @@ import { useGetStore } from "../../redux/reduxHooks/useGetStore"
  * Или строит фразу о создании первой задачи
  */
 export const TaskContainerLoader =
-	// memo(
+	memo(
 	( { state, content } ) => {
 		
-		console.log("three dots render ....")
+		// console.log("three dots render ....")
 		console.log( "   ... TaskContainerLoader's state: ", state )
 
-		const { tasks } = useGetStore()
 
 		return (
-			<div className = "task-body__content-container-loader">
+			<div
+				style = { { display: ( state === "complite" ? "none" : "flex" ) } }
+				className="task-body__content-container-loader"
+			>
 				
-				{ 
-					(state === '' || tasks.length === 0 )  &&
-					<div className = "task-body__content-container-begin">
-						{ content }
-					</div>
-				}
+				<div
+					style = { { display: (state === 'empty') ? "block" : "none" } }
+					className="task-body__content-container-empty"
+				>
+					{ content }
+				</div>
 				
 				<ThreeDots
 					height = "35"
@@ -36,9 +38,9 @@ export const TaskContainerLoader =
 					ariaLabel = "three-dots-loading"
 					wrapperStyle = { {} }
 					wrapperClassName = ""
-					visible = { state === "loading"}
+					visible = { state === "loading" }
 				/>
 			</div>
 		)
 	} 
-// )
+)

@@ -6,6 +6,7 @@ import {
 	useTaskFileActions
 } from "../redux/reduxHooks/useBindActions" 
 import { useFirebase } from "./useFirebase";
+import { textField } from "../redux/reduxSlice/fieldState/textFieldSlice.js";
 
 /**
  * Хук для обработки кликов по списку задач.
@@ -39,10 +40,6 @@ export function useTaskItemList() {
 			const task = tasks.find( it => it.id === id ) 
 			if ( !task ) return;
 			
-			setOpenField( true )
-			setIsCompliteField( task.isComplite )
-			newTextField( task )
-					
 			let files
 
 				if ( uploadFile[ id ] ) {
@@ -60,8 +57,19 @@ export function useTaskItemList() {
 					files  = task.files ?  ( { ...task.files } ) : {} 
 				}
 
-			setTaskFile( { ...task.files, ...files } )
 			
+			newTextField( {
+											id,
+											title: task.title,
+											description: task.description,
+											deadline: task.deadline,
+										} )
+			setTaskFile( { ...task.files, ...files } )
+			setIsCompliteField( task.isComplite )
+			setOpenField( true )
+			
+
+
 		}
 	, [ tasks, taskFile ])
 
