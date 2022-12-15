@@ -1,10 +1,17 @@
 @import "./template.scss";
 
 .task-field {
+
+		&__field-container {
+
+		}
+
 		&__text-height {
 			position: relative;
 			@extend %template-wrap;			
 			@include setBox($textHeightMargin, $textHeightPadding);
+
+			// border: 1px solid gray;
 		}
 		
 		&__descriptio-container {
@@ -14,7 +21,7 @@
 			max-height: $descriptionMaxHeight;
 			
 			@extend %template-overflow;
-	
+			
 			@include setBox($descriptionContainerMargin, $descriptionContainerPadding);
 
 		& * {
@@ -27,6 +34,11 @@
 
 		@media (max-width: 500px) {
 			max-height: $descriptionMaxHeightSmall;
+		}
+
+		@media (min-width: 960px) { 
+			max-height: 100%;
+			align-self: start;
 		}
 	}
 
@@ -63,6 +75,10 @@
 		@media (max-width: 500px) {
 			max-height: $titleFieldMaxHeightSmall;
 		}
+
+		@media (min-width: 960px) {
+			align-self: start;
+		}
 	}
 	
 	&__checkbox-container {
@@ -78,6 +94,10 @@
 		@media (max-width: 500px) {
 			font: $descriptionFontSmall;
 			margin: $checkboxContainerMarginSmall;
+		}
+
+		@media (min-width: 960px) {
+			display: none
 		}
 	}
 
@@ -98,6 +118,11 @@
 		@media (max-width: 500px) {
 			padding: $deadlinContainerMarginSmall;
 		}
+
+
+		@media (min-width: 960px) {
+			justify-self: start;
+		}
 	}
 
 	&__file-container {	
@@ -108,6 +133,10 @@
 		display: grid;
 		grid-template-columns: $fileContainerGridCol ;
 		justify-content: $fileContainerGridJustify;
+		
+		@media (min-width: 960px) {
+			align-self: end;
+		}
 	}
 	
 	&__button-container {
@@ -123,6 +152,10 @@
 
 		@media (max-width: 400px) {
 			justify-content: center;
+		}
+
+		@media (min-width: 960px) {
+			align-self: end;
 		}
 
 	}

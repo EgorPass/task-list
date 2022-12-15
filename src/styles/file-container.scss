@@ -10,6 +10,10 @@
 
 		@include setBorder($fileListBorder, $fileListBorderRadius, $fileListBoxShadow );
 		@include setBox($fileListMargin, $fileListPadding);
+
+		@media (min-width: 960px) {
+			max-height: 100%;
+		}
 	}
 
 	&__file-item {
@@ -36,6 +40,10 @@
 	&__file-add-position {
 		align-self: center;
 		justify-self: end;
+
+		@media (min-width: 960px) {
+			justify-self: center;
+		}
 	}
 	
 	&__file-add:hover {

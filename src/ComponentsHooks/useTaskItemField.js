@@ -8,7 +8,6 @@ import {
 				useTaskFileActions
 										} from "../redux/reduxHooks/useBindActions" 
 import { useGetStore} from "../redux/reduxHooks/useGetStore"
-import { unstable_renderSubtreeIntoContainer } from "react-dom";
 
 /**
  * Хук для обработки изменений описания поля задачи (кнопики закрыть или удалить, чекбокс, изменение текстовых полей)

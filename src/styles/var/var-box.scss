@@ -2,13 +2,15 @@
 
 // task-body //
 
-$taskBodyMargin: 20px auto;
-$taskBodyMarginSmall: 5px 0 0 0;
+$taskBodyMargin: 0px auto;
+$taskBodyMarginSmall: 0px 0 0 0;
 
-$taskContentMargin: 5px;
+
+$taskContentMargin: 2px 5px 5px 5px;
 
 // task-header //
 
+$taskHeaderMargin: 5px;
 $taskHeaderPadding: 5px 35px;
 $taskHeaderPaddingSmall: 5px 20px;
 
@@ -34,7 +36,7 @@ $taskItemTitlePadding: 0px;
 
 // search //
 
-$searchFieldMargin: 0 0px;
+$searchFieldMargin: 0px 0px;
 $searchFieldPadding: 4px 10px;
 
 // circle-button
@@ -47,6 +49,7 @@ $circleButtonPadding: 0;
 $taskFieldPadding: 20px;
 $taskFieldMarging: 5px;
 $taskFieldPaddingSmall: 15px;
+$taskFieldMargingBig: 5px 5px 5px 0px;
 
 // text-height //
 
@@ -65,13 +68,13 @@ $taskFieldTitlePadding: 0;
 
 // description-container //
 
-$descriptionContainerMargin: 15px 0;
+$descriptionContainerMargin: 10px 0;
 $descriptionContainerPadding: 10px 10px;
 
 // description //
 
 $descriptionMargin: 0;
-$descriptionPadding: 0;
+$descriptionPadding: 0px;
 
 // file-container //
 

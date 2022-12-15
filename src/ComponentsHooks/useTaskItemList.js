@@ -6,7 +6,7 @@ import {
 	useTaskFileActions
 } from "../redux/reduxHooks/useBindActions" 
 import { useFirebase } from "./useFirebase";
-import { textField } from "../redux/reduxSlice/fieldState/textFieldSlice.js";
+import { useTaskItemField } from "./useTaskItemField.js";
 
 /**
  * Хук для обработки кликов по списку задач.
@@ -19,8 +19,9 @@ export function useTaskItemList() {
 	const {setOpenField, setIsCompliteField} = useFieldStateActions()
 	const { setTaskFile  } = useTaskFileActions();
 
+	const { clickAtCloseButton } = useTaskItemField()
 	const {  setFieldAtDatabase } = useFirebase()
-	const { tasks,  uploadFile, taskFile}= useGetStore()
+	const { tasks,  uploadFile, taskFile,fieldState, textField }= useGetStore()
 	
 	
 	/**
@@ -37,6 +38,10 @@ export function useTaskItemList() {
 	const clickAtTitle = useCallback(
 		( id ) => {
 		 			
+			if (fieldState.openField) {
+				clickAtCloseButton(id)
+			}
+
 			const task = tasks.find( it => it.id === id ) 
 			if ( !task ) return;
 			
@@ -71,7 +76,7 @@ export function useTaskItemList() {
 
 
 		}
-	, [ tasks, taskFile ])
+	, [ tasks, taskFile, textField, fieldState ])
 
 	/**
 	 * Изменение компонента Chexkbox в списке задач.
@@ -80,8 +85,10 @@ export function useTaskItemList() {
 	 */
 	const clickAtCheckboxTitle = useCallback(
 		( id ) => {
-			const task = tasks.find( it=> it.id === id )
-			setFieldAtDatabase( `/${ task.id }`, "isComplite", !task.isComplite )
+			
+			const task = tasks.find(it => it.id === id)
+			setFieldAtDatabase(`/${task.id}`, "isComplite", !task.isComplite)
+			
 		}
 	, [ tasks ] )
 

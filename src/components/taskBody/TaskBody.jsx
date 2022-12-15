@@ -54,6 +54,10 @@ export const TaskBody = () => {
 				clickAtTitle = { clickAtTitle }
 				clickAtCheckboxTitle = { clickAtCheckboxTitle }	
 			/>
+
+							{/* <div className = "task-field__task-back-field">
+					</div> */}
+
 			
 			{
 				fieldState.openField && (

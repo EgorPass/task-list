@@ -28,7 +28,8 @@ export const TaskItemList =
 	({ tasks, loader, setModeForTitle, clickAtTitle, clickAtCheckboxTitle }) => {
 
 		// console.log( "taskItemList render ..." )
-
+			
+			
 		return (
 			<div className="task-body__content-container">
 				<ul className = "task-body__task-container task-container">

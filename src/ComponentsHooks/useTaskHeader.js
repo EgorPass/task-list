@@ -3,8 +3,8 @@ import { useCallback } from "react";
 import { useSearchActions, useTasksActions, useFieldStateActions, useTextFieldActions} from "../redux/reduxHooks/useBindActions";
 import { useFirebase } from "./useFirebase";
 import { useGetStore } from "../redux/reduxHooks/useGetStore";
+import { useTaskItemField } from "./useTaskItemField.js";
 
-import { useRefference } from "../ref/useRefference";
 
 /**
  * 
@@ -14,14 +14,14 @@ import { useRefference } from "../ref/useRefference";
 export function useTaskHeadr(  ) {
 	
 	
-	const { search } = useGetStore();
+	const { search, textField, fieldState } = useGetStore();
 	const { getTasks } = useTasksActions();
 	const { setSearch } = useSearchActions();
 	const { newTextField } = useTextFieldActions();
+	const { clickAtCloseButton } = useTaskItemField()
+
 	const { setFieldAtDatabase, getFilesFromDatabase } = useFirebase();
 	const { setNewFieldState } = useFieldStateActions();
-
-	
 
 	/**
 	 * Вспомогательная функция, которая используется для создания объекта новой задачи, внутри функции createTask.
@@ -57,13 +57,18 @@ export function useTaskHeadr(  ) {
 	 */
 	const createTask = useCallback(
 		async () => {		
+
+			if (fieldState.openField) {
+				clickAtCloseButton(textField.id)
+			}
+
 			const newTask = createNewTask()
 			setFieldAtDatabase( '/', newTask.id, newTask )
 
 			setNewFieldState()
 			newTextField( newTask )
 		}
-	, [])
+	, [textField, fieldState])
 
 	/**
 	 * Вспомогательная функция для обрабтчика ввода в поисковую строку changeSearct
@@ -98,7 +103,12 @@ export function useTaskHeadr(  ) {
 	 * @param {string} value параметр берется из события изменения input
 	 */
 	const changeSearch = useCallback(
-		( { target: { value } } ) => {
+		({ target: { value } }) => {
+			
+			if (fieldState.openField) {
+				clickAtCloseButton(textField.id)
+			}
+
 			setSearch(value)
 			
 			new Promise( res => {			
@@ -110,7 +120,7 @@ export function useTaskHeadr(  ) {
 			} )
 			.then( res => getTasks( res ) )
 		}
-	, [ search ] )
+	, [ search, textField, fieldState ] )
 
 	return {
 		changeSearch,

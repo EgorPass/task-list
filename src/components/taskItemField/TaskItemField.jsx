@@ -54,13 +54,14 @@ export const TaskItemField =
 																											)}` )
 		, [fieldState.isComplite, textField.deadline])
 		
-	console.log("uploadTaskRef from TaskField: ", uploadTaskRef)
-			console.log( { ...textField } )
+	// console.log("uploadTaskRef from TaskField: ", uploadTaskRef)
+			// console.log( { ...textField } )
 	
 	return (
 		<div className = "task-body__task-cover" >
 			<div className = "task-body__task-field task-field" >
 				
+
 				<FieldTitleContainer
 					className = { classNameForFieldTitle }
 					content = { textField.title }

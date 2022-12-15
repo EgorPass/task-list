@@ -19,13 +19,34 @@
 }
 
 .task-body {
-	width: $taskBody;
-	min-width: $taskMinWidth;
 	margin:$taskBodyMargin;
 
+	display: grid;
+	grid-template-columns: minmax(300px, 500px);
+	grid-template-rows:  70px auto;
+	grid-template-areas: "taskHeader" "contentContainer";
+
+	width: $taskBody;
+	min-width: $taskMinWidth;
+	height: 100vh;
+	max-height: 100vh;
+	overflow: hidden;
+	
 	@media (max-width: 500px) {
 		width: $taskBodySmall;
 		margin: $taskBodyMarginSmall;
+		
+	}
+	
+	@media (min-width: 960px) {
+		width: auto;
+		max-width: 1440px;
+		
+		margin: 0 auto;
+
+		grid-template-columns: 500px auto;
+		grid-template-areas: 	"taskHeader taskCover"
+										"contentContainer taskCover";
 	}
 
 	&__content-container-loader {
@@ -51,11 +72,13 @@
 
 	&__task-header {
 
+		grid-area: taskHeader;
+
 		@include setGrid($taskHeaderGridRow, $taskHeaderGridCol, $taskHeaderJustify, $taskHeaderAlign);
 
 		@include setBorder($taskHeaderBorder, $taskHeaderBorderRadius, $taskBodyShadow);
 
-		@include setBox($taskContentMargin, $taskHeaderPadding);
+		@include setBox($taskHeaderMargin, $taskHeaderPadding);
 
 		background: $backgroundBody;
 
@@ -65,8 +88,10 @@
 	}
 
 	&__content-container {
+		grid-area: contentContainer;
+
+		overflow-y: auto;
 		position: relative;
-		min-height: 30px;
 		background: $backgroundBody;
 
 		@include setBorder($contentContainerBorder, $contentContainerBorderRadius, $taskBodyShadow);
@@ -75,7 +100,6 @@
 		
 		
 		@media (max-width: 500px) {
-			min-height: 40px;
 			padding: $contentContainerPaddingSmall;
 		}
 	}
@@ -89,46 +113,95 @@
 	}
 
 	&__task-cover {
+		box-sizing: border-box;
+		grid-area: taskCover;
 		position: fixed;
 		padding: 0;
 		left: 0;
 		top: 0;
-		width: 100%;
-		height: 100%;
+		right: 0;
+		bottom: 0;
+
+
 		background: $taskCoverBackground;
 		z-index: 1;
 
-		@include setFlex($flexFlowRow, center, center)
+		overflow-y: hidden;
+
+		@include setFlex($flexFlowRow, center, center);
+		
+		@media (min-width: 960px) {
+			background-color: transparent;
+			position: static;
+			display: block;
+			height: 100%;
+			width: 100%;
+			padding: 5px 5px 5px 2px;
+		}
+	
+	}
+
+	&__task-back-field {
+		@media (min-width: 960px) {
+			
+			grid-area: taskCover;
+			width: 100%;
+			height: 100%;
+			
+			display: block;
+			background-color: $backgroundBody;
+		}
 	}
 
 	&__task-field {
+
 		box-sizing: border-box;
 		width: $taskFieldMaxWidht;
 		min-width:$taskMinWidth;
-		
+		overflow-y: auto;
+
 		@include setBorder($taskFieldBorder, $taskFieldBorderRadius, $taskFieldBoxShadow);
 
 		@include setBox($taskFieldMarging, $taskFieldPadding);
 
-	 	@include setGrid($taskFieldGridRow, $taskFieldGridCol, $taskFieldJustify, $taskFieldAlign);
-	
-			grid-template-areas:	"header header"
-														"description description"
-														"file file"
-														"checkbox deadline"
-														"buttonContainer buttonContainer";
-	
-			background: $backgroungField;	
+		@include setGrid($taskFieldGridRow, $taskFieldGridCol, $taskFieldJustify, $taskFieldAlign);
+
+		grid-template-areas: "header header"
+			"description description"
+			"file file"
+			"checkbox deadline"
+			"buttonContainer buttonContainer";
+
+		background: $backgroungField;
 
 		@media (max-width: $taskFieldMaxWidht) {
 			padding: $taskFieldPaddingSmall;
 			grid-template-rows: $taskFieldGridRowSmall;
 			grid-template-areas: " header header"
-														"description description"
-														"file file"
-														"checkbox checkbox"
-														'deadline deadline'
-														"buttonContainer buttonContainer";		
+				"description description"
+				"file file"
+				"checkbox checkbox"
+				'deadline deadline'
+				"buttonContainer buttonContainer";
+		}
+
+		@media (min-width: 960px) {
+			grid-template-areas: " header header"
+					"description description"
+					"file file"
+					'deadline deadline'
+					"buttonContainer buttonContainer";
+		}
+
+		@media (min-width: 960px) {
+			margin: 0;
+			border: none;
+			width: 100%;
+			height: 100%;
+			
+			background-color: $backgroundBody;			
+			grid-template-rows: $taskFieldGridRowBig;
+			align-items: center;
 		}
 	}
 }
